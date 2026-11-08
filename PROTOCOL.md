@@ -42,8 +42,9 @@ answered even if no further betting is possible.
 
 Both discard choices are simultaneous. Before `discard_result`, the strategy has
 no access to the opponent's chosen discard. Afterwards the exposed card is used
-as a blocker and as soft range evidence. Original dealt cards that we discarded
-remain blocked as well: the board was fixed before either discard.
+as a blocker. Optional soft discard-policy inference is disabled in the selected
+v4 candidate configuration after ablation testing. Original dealt cards that we
+discarded remain blocked as well: the board was fixed before either discard.
 
 We retain only in-memory state for the current leg. There is no duplicate-deal
 matching, persistent storage, environment-based signalling or cross-leg state.

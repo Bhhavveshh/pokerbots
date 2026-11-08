@@ -1,42 +1,46 @@
-# Rebuild against the supplied Discard Hold'em rules
+# Four sequential improvement phases
 
-The initial ordinary Hold'em assumptions are superseded. Canonical organizer
-materials, precedence and hashes are recorded in `official/README.md`.
+The supplied Discard Hold'em rulebook, protocol and engine supersede the original
+ordinary Hold'em assumptions. Source audit: `official/README.md`.
 
-## Four sequential phases
+1. **Diagnose and align decisions.** Freeze v1 and all tracking opponents. Run
+   direct ablations on a fixed development panel. Make flop equity and the actual
+   discard use the same retained pair. Test public-discard inference and opponent
+   adaptation rather than assuming every feature helps.
+2. **Improve bounded expected value.** Generate preflop equity ordering for all
+   1,755 suit-equivalent triples under flop-only discard policies. Separately test
+   exact weighted river enumeration and a fold/call/re-raise response model. Keep
+   only candidates supported by measured match points and chip results.
+3. **Test actual game-theoretic solving.** Implement vanilla CFR on a finite
+   one-bet river game. Validate the known Kuhn value and exact best responses.
+   Construct both players' ranges from public information, then select the actual
+   hero bucket after solving. Compare the prototype in full official matches.
+   A mathematically correct restricted solver is not automatically a stronger bot.
+4. **Freeze, validate and deliver.** Lock the chosen production version before
+   fresh seeds. Compare baseline and final in 80 complete matches each, including
+   two independent policies. Run full Stage 1/2 guarded matches, correctness tests,
+   verify ZIP imports and delivery, then publish the source to the private repo.
+   Fresh validation did not confirm the gain. We preserved that result and
+   exported the tested v1 baseline as a conservative submission alternative.
 
-1. **Audit and integration:** read all three PDFs/kit files, retain the verified
-   evaluator, replace the invented protocol, and validate a real match with the
-   unmodified supplied engine. Preserve the historical prototype for provenance.
-2. **Variant-aware strategy:** three-card preflop/flop beliefs; flop-only simulated
-   discard policies; compare all three real discard choices on common samples;
-   rebuild conditioned pair ranges after exposed discards; block every known dead
-   card; obey the four-raise cap using engine-supplied legality.
-3. **Evaluation:** seeded synthetic opponents and direct ablations; separate
-   development (`discard-dev-*`) from frozen evaluation (`discard-heldout-v1-*`).
-   Report match points first, chip results, exact capped score and uncertainty.
-   Do not tune parameters on the frozen evaluation seeds.
-4. **Runtime and delivery:** full 400/1000-hand official matches with clocks and
-   resource audit guards, Python 3.11 checks, source/diff review, and a <=5 MB ZIP
-   with bot.py at root. Verify the packaged modules through the official runner.
+## Measurement rules
 
-## Decisions and limits
+- `IMPROVEMENT_LOG.md` and `experiments/decisions.json` record selections, rejected
+  candidates, win rates, likely mechanisms and uncertainty. An increase is never
+  assumed in advance. Tracking data is explicitly used for development.
+- Normal official timing stays enabled in every performance match. Each match
+  and its children use one logical CPU. Timed sample cutoffs can change the RNG
+  path even with fixed seeds; logic-only fixed-work replay is separately labelled.
+- Fresh final seeds are never used for subsequent tuning. Whole deal-seed blocks
+  across opponents are resampled for paired intervals; hands are not treated as
+  independent observations. Synthetic opponents do not represent the field.
+- Public dead-card information always blocks cards. Disabling a heuristic about
+  why the opponent discarded a card does not disable this correctness rule.
+- No duplicate-deal detection, cross-leg persistence, runtime writes, networking,
+  subprocesses or runtime installation. Only Python 3.11 standard libraries used.
+- Full-game equilibrium solving and a neural architecture would be overengineering
+  for the current time bank and evidence. The smallest tested improvement wins.
 
-- Use the supplied engine as the test authority; never rewrite its rules to fit
-  our bot. Documents prevail if a discrepancy is found (Rulebook 1.3).
-- A discard is selected from a flop, never from a simulated completed board. The
-  simulation can sample future cards to estimate equity, but a simulated policy
-  sees only information available at its decision time.
-- Do not detect duplicate deals or share state between legs. Model memory is
-  confined to one process/leg and resets on init.
-- Keep standard-library-only heuristics and bounded sampling. Full-game CFR and
-  neural training remain deferred; correctness and reproducible official-engine
-  evidence take priority over additional architecture.
-- Synthetic opponents share some components. Results near zero against the
-  reference/no-signal policies do not establish strategic superiority.
-- Provisional time/score values may change; recheck organizer announcements before
-  submission. Local Windows tests cannot certify the server's Linux sandbox.
-
-`RESULTS.md` and `reports/discard_holdem/` contain current evidence. The old JSON
-files at `reports/` root and the historical two-card harness are not competition
-performance evidence. The runtime archive excludes historical modules entirely.
+Current evidence is in `RESULTS.md` and `reports/improvements/`. The original
+Discard Hold'em rebuild remains in `reports/discard_holdem/`; earlier two-card
+reports at the root of `reports/` are historical, not competition evidence.

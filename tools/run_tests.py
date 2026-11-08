@@ -1,6 +1,7 @@
 """Run correctness tests and retain a small machine-readable verification record."""
 
 import hashlib
+import argparse
 import json
 import sys
 import time
@@ -13,6 +14,9 @@ if str(ROOT) not in sys.path:
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", default="reports/improvements/tests.json")
+    args = parser.parse_args()
     start = time.perf_counter()
     suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"), top_level_dir=str(ROOT))
     result = unittest.TextTestRunner(verbosity=1).run(suite)
@@ -23,7 +27,7 @@ def main():
               "source_sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
                                 for folder in ("pokerbot", "tests")
                                 for p in sorted((ROOT / folder).glob("*.py"))}}
-    destination = ROOT / "reports/discard_holdem/tests.json"
+    destination = ROOT / args.output
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     if not result.wasSuccessful():

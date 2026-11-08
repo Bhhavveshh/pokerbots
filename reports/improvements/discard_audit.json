@@ -1,0 +1,1306 @@
+{
+  "states": 160,
+  "independent_evaluation_worlds_per_state": 1024,
+  "selection_samples": {
+    "optimized": 128,
+    "consistent": 96
+  },
+  "seed": 150913,
+  "seconds": 21.823038800001086,
+  "mean_equity": {
+    "fast": 0.5244537353515625,
+    "optimized": 0.528216552734375,
+    "consistent": 0.526513671875
+  },
+  "optimized": {
+    "mean_equity_delta_from_fast": 0.0037628173828125,
+    "approx_95pct_half_width": 0.0032003606817961093
+  },
+  "consistent": {
+    "mean_equity_delta_from_fast": 0.0020599365234375,
+    "approx_95pct_half_width": 0.002337512115470949
+  },
+  "rows": [
+    {
+      "state": 0,
+      "fast": 0.41748046875,
+      "optimized": 0.41748046875,
+      "consistent": 0.41748046875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 1,
+      "fast": 0.49951171875,
+      "optimized": 0.49951171875,
+      "consistent": 0.49951171875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 2,
+      "fast": 0.32080078125,
+      "optimized": 0.32080078125,
+      "consistent": 0.32080078125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 3,
+      "fast": 0.65625,
+      "optimized": 0.65625,
+      "consistent": 0.65625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 4,
+      "fast": 0.6015625,
+      "optimized": 0.6015625,
+      "consistent": 0.6015625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 5,
+      "fast": 0.2822265625,
+      "optimized": 0.2822265625,
+      "consistent": 0.2822265625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 6,
+      "fast": 0.490234375,
+      "optimized": 0.490234375,
+      "consistent": 0.490234375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 7,
+      "fast": 0.20849609375,
+      "optimized": 0.20849609375,
+      "consistent": 0.20849609375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 8,
+      "fast": 0.30810546875,
+      "optimized": 0.30810546875,
+      "consistent": 0.30810546875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 9,
+      "fast": 1.0,
+      "optimized": 1.0,
+      "consistent": 1.0,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 10,
+      "fast": 0.3876953125,
+      "optimized": 0.3876953125,
+      "consistent": 0.3876953125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 11,
+      "fast": 0.380859375,
+      "optimized": 0.380859375,
+      "consistent": 0.380859375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 12,
+      "fast": 0.51708984375,
+      "optimized": 0.51708984375,
+      "consistent": 0.51708984375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 13,
+      "fast": 0.52685546875,
+      "optimized": 0.52685546875,
+      "consistent": 0.52685546875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 14,
+      "fast": 0.92529296875,
+      "optimized": 0.92529296875,
+      "consistent": 0.92529296875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 15,
+      "fast": 0.63525390625,
+      "optimized": 0.63525390625,
+      "consistent": 0.63525390625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 16,
+      "fast": 0.29150390625,
+      "optimized": 0.29150390625,
+      "consistent": 0.29150390625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 17,
+      "fast": 0.29931640625,
+      "optimized": 0.4638671875,
+      "consistent": 0.29931640625,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 18,
+      "fast": 0.18408203125,
+      "optimized": 0.18408203125,
+      "consistent": 0.18408203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 19,
+      "fast": 0.75341796875,
+      "optimized": 0.75341796875,
+      "consistent": 0.75341796875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 20,
+      "fast": 0.6923828125,
+      "optimized": 0.6923828125,
+      "consistent": 0.6923828125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 21,
+      "fast": 0.826171875,
+      "optimized": 0.826171875,
+      "consistent": 0.826171875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 22,
+      "fast": 0.48095703125,
+      "optimized": 0.48095703125,
+      "consistent": 0.48095703125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 23,
+      "fast": 0.66064453125,
+      "optimized": 0.66064453125,
+      "consistent": 0.66064453125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 24,
+      "fast": 0.44873046875,
+      "optimized": 0.44873046875,
+      "consistent": 0.44873046875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 25,
+      "fast": 0.85107421875,
+      "optimized": 0.85107421875,
+      "consistent": 0.85107421875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 26,
+      "fast": 0.177734375,
+      "optimized": 0.177734375,
+      "consistent": 0.177734375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 27,
+      "fast": 0.263671875,
+      "optimized": 0.263671875,
+      "consistent": 0.263671875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 28,
+      "fast": 0.88720703125,
+      "optimized": 0.88720703125,
+      "consistent": 0.88720703125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 29,
+      "fast": 0.7587890625,
+      "optimized": 0.7587890625,
+      "consistent": 0.7587890625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 30,
+      "fast": 0.62548828125,
+      "optimized": 0.62548828125,
+      "consistent": 0.62548828125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 31,
+      "fast": 0.55615234375,
+      "optimized": 0.55615234375,
+      "consistent": 0.55615234375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 32,
+      "fast": 0.2099609375,
+      "optimized": 0.2099609375,
+      "consistent": 0.2099609375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 33,
+      "fast": 0.333984375,
+      "optimized": 0.333984375,
+      "consistent": 0.333984375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 34,
+      "fast": 0.25244140625,
+      "optimized": 0.25244140625,
+      "consistent": 0.25244140625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 35,
+      "fast": 0.44384765625,
+      "optimized": 0.44384765625,
+      "consistent": 0.44384765625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 36,
+      "fast": 0.4033203125,
+      "optimized": 0.4033203125,
+      "consistent": 0.4033203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 37,
+      "fast": 0.25146484375,
+      "optimized": 0.25146484375,
+      "consistent": 0.2392578125,
+      "optimized_switch": false,
+      "consistent_switch": true
+    },
+    {
+      "state": 38,
+      "fast": 0.90234375,
+      "optimized": 0.90234375,
+      "consistent": 0.90234375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 39,
+      "fast": 0.70068359375,
+      "optimized": 0.70068359375,
+      "consistent": 0.70068359375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 40,
+      "fast": 0.48095703125,
+      "optimized": 0.48095703125,
+      "consistent": 0.48095703125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 41,
+      "fast": 0.6025390625,
+      "optimized": 0.6025390625,
+      "consistent": 0.6025390625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 42,
+      "fast": 0.3486328125,
+      "optimized": 0.3486328125,
+      "consistent": 0.3486328125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 43,
+      "fast": 0.45947265625,
+      "optimized": 0.45947265625,
+      "consistent": 0.45947265625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 44,
+      "fast": 0.5859375,
+      "optimized": 0.5859375,
+      "consistent": 0.5859375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 45,
+      "fast": 0.32373046875,
+      "optimized": 0.32373046875,
+      "consistent": 0.32373046875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 46,
+      "fast": 0.3955078125,
+      "optimized": 0.3955078125,
+      "consistent": 0.3955078125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 47,
+      "fast": 0.69091796875,
+      "optimized": 0.69091796875,
+      "consistent": 0.69091796875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 48,
+      "fast": 0.89013671875,
+      "optimized": 0.89013671875,
+      "consistent": 0.89013671875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 49,
+      "fast": 0.3056640625,
+      "optimized": 0.3056640625,
+      "consistent": 0.3056640625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 50,
+      "fast": 0.61083984375,
+      "optimized": 0.61083984375,
+      "consistent": 0.61083984375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 51,
+      "fast": 0.8330078125,
+      "optimized": 0.8330078125,
+      "consistent": 0.8330078125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 52,
+      "fast": 0.8740234375,
+      "optimized": 0.8740234375,
+      "consistent": 0.8740234375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 53,
+      "fast": 0.52099609375,
+      "optimized": 0.52099609375,
+      "consistent": 0.5341796875,
+      "optimized_switch": false,
+      "consistent_switch": true
+    },
+    {
+      "state": 54,
+      "fast": 0.6181640625,
+      "optimized": 0.6181640625,
+      "consistent": 0.6181640625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 55,
+      "fast": 0.3017578125,
+      "optimized": 0.3017578125,
+      "consistent": 0.3017578125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 56,
+      "fast": 0.4580078125,
+      "optimized": 0.4580078125,
+      "consistent": 0.4580078125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 57,
+      "fast": 0.58544921875,
+      "optimized": 0.58544921875,
+      "consistent": 0.58544921875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 58,
+      "fast": 0.8017578125,
+      "optimized": 0.8017578125,
+      "consistent": 0.8017578125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 59,
+      "fast": 0.48828125,
+      "optimized": 0.48828125,
+      "consistent": 0.48828125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 60,
+      "fast": 0.703125,
+      "optimized": 0.7578125,
+      "consistent": 0.703125,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 61,
+      "fast": 0.62939453125,
+      "optimized": 0.63671875,
+      "consistent": 0.62939453125,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 62,
+      "fast": 0.5859375,
+      "optimized": 0.5859375,
+      "consistent": 0.5859375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 63,
+      "fast": 0.4921875,
+      "optimized": 0.4921875,
+      "consistent": 0.4921875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 64,
+      "fast": 0.5166015625,
+      "optimized": 0.5166015625,
+      "consistent": 0.5166015625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 65,
+      "fast": 0.34912109375,
+      "optimized": 0.34912109375,
+      "consistent": 0.34912109375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 66,
+      "fast": 0.7666015625,
+      "optimized": 0.7666015625,
+      "consistent": 0.7666015625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 67,
+      "fast": 0.5048828125,
+      "optimized": 0.5048828125,
+      "consistent": 0.5048828125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 68,
+      "fast": 0.28759765625,
+      "optimized": 0.28759765625,
+      "consistent": 0.28759765625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 69,
+      "fast": 0.83203125,
+      "optimized": 0.83203125,
+      "consistent": 0.83203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 70,
+      "fast": 0.6728515625,
+      "optimized": 0.6728515625,
+      "consistent": 0.6728515625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 71,
+      "fast": 0.6708984375,
+      "optimized": 0.6708984375,
+      "consistent": 0.6708984375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 72,
+      "fast": 0.2265625,
+      "optimized": 0.2265625,
+      "consistent": 0.2265625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 73,
+      "fast": 0.32763671875,
+      "optimized": 0.40380859375,
+      "consistent": 0.40380859375,
+      "optimized_switch": true,
+      "consistent_switch": true
+    },
+    {
+      "state": 74,
+      "fast": 0.47021484375,
+      "optimized": 0.47021484375,
+      "consistent": 0.4931640625,
+      "optimized_switch": false,
+      "consistent_switch": true
+    },
+    {
+      "state": 75,
+      "fast": 0.4267578125,
+      "optimized": 0.4267578125,
+      "consistent": 0.4267578125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 76,
+      "fast": 0.4912109375,
+      "optimized": 0.4912109375,
+      "consistent": 0.4912109375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 77,
+      "fast": 0.22998046875,
+      "optimized": 0.22998046875,
+      "consistent": 0.22998046875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 78,
+      "fast": 0.6416015625,
+      "optimized": 0.6416015625,
+      "consistent": 0.6416015625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 79,
+      "fast": 0.30908203125,
+      "optimized": 0.30908203125,
+      "consistent": 0.30908203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 80,
+      "fast": 0.5,
+      "optimized": 0.50048828125,
+      "consistent": 0.5,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 81,
+      "fast": 0.4853515625,
+      "optimized": 0.4853515625,
+      "consistent": 0.4853515625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 82,
+      "fast": 0.591796875,
+      "optimized": 0.591796875,
+      "consistent": 0.591796875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 83,
+      "fast": 0.18408203125,
+      "optimized": 0.18408203125,
+      "consistent": 0.18408203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 84,
+      "fast": 0.28955078125,
+      "optimized": 0.28955078125,
+      "consistent": 0.28955078125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 85,
+      "fast": 0.7490234375,
+      "optimized": 0.7490234375,
+      "consistent": 0.7490234375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 86,
+      "fast": 0.27490234375,
+      "optimized": 0.27490234375,
+      "consistent": 0.27490234375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 87,
+      "fast": 0.970703125,
+      "optimized": 0.970703125,
+      "consistent": 0.970703125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 88,
+      "fast": 0.4287109375,
+      "optimized": 0.4287109375,
+      "consistent": 0.4287109375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 89,
+      "fast": 0.73291015625,
+      "optimized": 0.73291015625,
+      "consistent": 0.73291015625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 90,
+      "fast": 0.58935546875,
+      "optimized": 0.58935546875,
+      "consistent": 0.58935546875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 91,
+      "fast": 0.5859375,
+      "optimized": 0.5859375,
+      "consistent": 0.5859375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 92,
+      "fast": 0.46875,
+      "optimized": 0.46875,
+      "consistent": 0.46875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 93,
+      "fast": 0.46923828125,
+      "optimized": 0.46923828125,
+      "consistent": 0.46923828125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 94,
+      "fast": 0.17578125,
+      "optimized": 0.17578125,
+      "consistent": 0.17578125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 95,
+      "fast": 0.17529296875,
+      "optimized": 0.17529296875,
+      "consistent": 0.17529296875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 96,
+      "fast": 0.443359375,
+      "optimized": 0.443359375,
+      "consistent": 0.443359375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 97,
+      "fast": 0.34423828125,
+      "optimized": 0.34423828125,
+      "consistent": 0.34423828125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 98,
+      "fast": 0.90869140625,
+      "optimized": 0.90869140625,
+      "consistent": 0.90869140625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 99,
+      "fast": 0.77685546875,
+      "optimized": 0.77685546875,
+      "consistent": 0.77685546875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 100,
+      "fast": 0.244140625,
+      "optimized": 0.27099609375,
+      "consistent": 0.244140625,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 101,
+      "fast": 0.58203125,
+      "optimized": 0.580078125,
+      "consistent": 0.58203125,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 102,
+      "fast": 0.1728515625,
+      "optimized": 0.1728515625,
+      "consistent": 0.1728515625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 103,
+      "fast": 0.4775390625,
+      "optimized": 0.4775390625,
+      "consistent": 0.52490234375,
+      "optimized_switch": false,
+      "consistent_switch": true
+    },
+    {
+      "state": 104,
+      "fast": 0.3447265625,
+      "optimized": 0.3447265625,
+      "consistent": 0.3447265625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 105,
+      "fast": 0.33642578125,
+      "optimized": 0.33642578125,
+      "consistent": 0.33642578125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 106,
+      "fast": 0.287109375,
+      "optimized": 0.287109375,
+      "consistent": 0.287109375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 107,
+      "fast": 0.18212890625,
+      "optimized": 0.18212890625,
+      "consistent": 0.18212890625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 108,
+      "fast": 0.83349609375,
+      "optimized": 0.83349609375,
+      "consistent": 0.83349609375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 109,
+      "fast": 0.52197265625,
+      "optimized": 0.52197265625,
+      "consistent": 0.52197265625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 110,
+      "fast": 0.31494140625,
+      "optimized": 0.35888671875,
+      "consistent": 0.31494140625,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 111,
+      "fast": 0.228515625,
+      "optimized": 0.228515625,
+      "consistent": 0.228515625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 112,
+      "fast": 0.44482421875,
+      "optimized": 0.44482421875,
+      "consistent": 0.44482421875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 113,
+      "fast": 0.6484375,
+      "optimized": 0.6484375,
+      "consistent": 0.6484375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 114,
+      "fast": 0.32177734375,
+      "optimized": 0.32177734375,
+      "consistent": 0.32177734375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 115,
+      "fast": 0.26171875,
+      "optimized": 0.26171875,
+      "consistent": 0.27734375,
+      "optimized_switch": false,
+      "consistent_switch": true
+    },
+    {
+      "state": 116,
+      "fast": 0.56982421875,
+      "optimized": 0.56982421875,
+      "consistent": 0.56982421875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 117,
+      "fast": 0.43115234375,
+      "optimized": 0.43115234375,
+      "consistent": 0.43115234375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 118,
+      "fast": 0.4658203125,
+      "optimized": 0.4658203125,
+      "consistent": 0.4658203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 119,
+      "fast": 0.80517578125,
+      "optimized": 0.80517578125,
+      "consistent": 0.80517578125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 120,
+      "fast": 0.4306640625,
+      "optimized": 0.4306640625,
+      "consistent": 0.4306640625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 121,
+      "fast": 0.26171875,
+      "optimized": 0.26171875,
+      "consistent": 0.26171875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 122,
+      "fast": 0.57666015625,
+      "optimized": 0.57666015625,
+      "consistent": 0.57666015625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 123,
+      "fast": 0.83251953125,
+      "optimized": 0.83251953125,
+      "consistent": 0.83251953125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 124,
+      "fast": 0.51513671875,
+      "optimized": 0.51513671875,
+      "consistent": 0.51513671875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 125,
+      "fast": 0.33251953125,
+      "optimized": 0.33251953125,
+      "consistent": 0.33251953125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 126,
+      "fast": 0.29833984375,
+      "optimized": 0.29833984375,
+      "consistent": 0.29833984375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 127,
+      "fast": 0.8935546875,
+      "optimized": 0.8935546875,
+      "consistent": 0.8935546875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 128,
+      "fast": 0.78466796875,
+      "optimized": 0.78466796875,
+      "consistent": 0.78466796875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 129,
+      "fast": 0.6162109375,
+      "optimized": 0.6162109375,
+      "consistent": 0.6162109375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 130,
+      "fast": 0.5732421875,
+      "optimized": 0.5732421875,
+      "consistent": 0.5732421875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 131,
+      "fast": 0.54541015625,
+      "optimized": 0.54541015625,
+      "consistent": 0.54541015625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 132,
+      "fast": 0.58154296875,
+      "optimized": 0.58154296875,
+      "consistent": 0.58154296875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 133,
+      "fast": 0.6328125,
+      "optimized": 0.6328125,
+      "consistent": 0.6328125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 134,
+      "fast": 0.9658203125,
+      "optimized": 0.9658203125,
+      "consistent": 0.9658203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 135,
+      "fast": 0.40283203125,
+      "optimized": 0.40283203125,
+      "consistent": 0.40283203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 136,
+      "fast": 0.35009765625,
+      "optimized": 0.41162109375,
+      "consistent": 0.35009765625,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 137,
+      "fast": 0.31005859375,
+      "optimized": 0.31005859375,
+      "consistent": 0.31005859375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 138,
+      "fast": 0.67431640625,
+      "optimized": 0.67431640625,
+      "consistent": 0.67431640625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 139,
+      "fast": 0.67724609375,
+      "optimized": 0.67724609375,
+      "consistent": 0.67724609375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 140,
+      "fast": 0.4375,
+      "optimized": 0.4375,
+      "consistent": 0.4375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 141,
+      "fast": 0.79931640625,
+      "optimized": 0.79931640625,
+      "consistent": 0.79931640625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 142,
+      "fast": 0.59033203125,
+      "optimized": 0.59033203125,
+      "consistent": 0.59033203125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 143,
+      "fast": 0.4921875,
+      "optimized": 0.4921875,
+      "consistent": 0.4921875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 144,
+      "fast": 0.21875,
+      "optimized": 0.21875,
+      "consistent": 0.21875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 145,
+      "fast": 0.703125,
+      "optimized": 0.705078125,
+      "consistent": 0.703125,
+      "optimized_switch": true,
+      "consistent_switch": false
+    },
+    {
+      "state": 146,
+      "fast": 0.91259765625,
+      "optimized": 0.91259765625,
+      "consistent": 0.91259765625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 147,
+      "fast": 0.5634765625,
+      "optimized": 0.5634765625,
+      "consistent": 0.5634765625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 148,
+      "fast": 0.46923828125,
+      "optimized": 0.46923828125,
+      "consistent": 0.46923828125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 149,
+      "fast": 0.76171875,
+      "optimized": 0.76171875,
+      "consistent": 0.76171875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 150,
+      "fast": 0.50390625,
+      "optimized": 0.50390625,
+      "consistent": 0.50390625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 151,
+      "fast": 0.64404296875,
+      "optimized": 0.64404296875,
+      "consistent": 0.64404296875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 152,
+      "fast": 0.837890625,
+      "optimized": 0.837890625,
+      "consistent": 0.837890625,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 153,
+      "fast": 0.689453125,
+      "optimized": 0.689453125,
+      "consistent": 0.689453125,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 154,
+      "fast": 0.388671875,
+      "optimized": 0.388671875,
+      "consistent": 0.388671875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 155,
+      "fast": 0.6318359375,
+      "optimized": 0.6318359375,
+      "consistent": 0.6318359375,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 156,
+      "fast": 0.857421875,
+      "optimized": 0.857421875,
+      "consistent": 0.857421875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 157,
+      "fast": 0.4794921875,
+      "optimized": 0.4794921875,
+      "consistent": 0.4794921875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 158,
+      "fast": 0.8779296875,
+      "optimized": 0.8779296875,
+      "consistent": 0.8779296875,
+      "optimized_switch": false,
+      "consistent_switch": false
+    },
+    {
+      "state": 159,
+      "fast": 0.4560546875,
+      "optimized": 0.62255859375,
+      "consistent": 0.62255859375,
+      "optimized_switch": true,
+      "consistent_switch": true
+    }
+  ],
+  "limitations": "Synthetic uniform opponent triples using a flop-only greedy discard. This measures showdown equity, not betting EV or tournament win rate. Fresh common evaluation worlds are not supplied to either selection policy."
+}

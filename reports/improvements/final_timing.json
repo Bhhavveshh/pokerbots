@@ -1,0 +1,12 @@
+{
+  "baseline": {
+    "mean_leg_charged_seconds": 4.495431250000524,
+    "max_leg_charged_seconds": 9.924999999962893,
+    "legs": 160
+  },
+  "candidate": {
+    "mean_leg_charged_seconds": 2.7129875000001675,
+    "max_leg_charged_seconds": 4.7480000000068685,
+    "legs": 160
+  }
+}

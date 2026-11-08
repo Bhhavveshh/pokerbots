@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "method": "Fixed-work logic replay only; not a win-rate/runtime experiment",
+  "hands": 24,
+  "requests": 72,
+  "source": "v3 explicit selected flags vs v4 production defaults",
+  "output_sha256": "258890a823c21867201f15c14817ebedd4586d33a0d5b420f3a5822aef9d3322"
+}

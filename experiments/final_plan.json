@@ -1,0 +1,38 @@
+{
+  "baseline_version": "v1",
+  "candidate_version": "v4",
+  "candidate_flags": {},
+  "candidate_snapshot_sha256": "bcb111e77030e501d7c64bc5cd9a31897f1dbe8f29e490c51afc494ec3c5f979",
+  "source_sha256": {
+    "bot.py": "b31ed0798ae389157e69ea906c94fd1a70a59833cc0e9b0036d08e07062d5f7f",
+    "pokerbot/__init__.py": "c634e68a7c5f27d70c7d434318f450fd120059c07d253cb52924ec02fdec5eb0",
+    "pokerbot/__main__.py": "9eb2bc27c70ec8f43eb2ec40c331d87268aa7d8137f80abd5b35f458396ef692",
+    "pokerbot/cards.py": "4a7859484b274b7a49068351b901b9f09e090c03c9dfa3bc36022eb045c37f53",
+    "pokerbot/discard.py": "496d4c631e8d2381a40405fb55268e3329e41cd2a67ec29bfb938d534a1b8353",
+    "pokerbot/agent.py": "2f69ecf0ad78e75bdf982350bc7dba25352ed4c3b3235d468e6392c72c4341ed",
+    "pokerbot/protocol.py": "020776555d004fae5c01dd9e8277d55cbf407cc04382e66bdc107549961a710a",
+    "pokerbot/responses.py": "63d47725979a09f797040a1268a63db6e99b61f24535a95087796b64761e2c89",
+    "pokerbot/preflop.py": "c89fec3fa489c109084b88d70d0f5bae55f98506b401a2e74dde0094a947e050",
+    "pokerbot/preflop_data.json": "7f85d9897e0e326b4caa805de87fa5740681f44c4566948d12ebf8d9bdf39400",
+    "pokerbot/cfr.py": "23809e94eabcb8891cf3418906cbcaef26adfd47c33a56a1ceeeff47c1bc8e59",
+    "pokerbot/river.py": "4cac0e114d09732bcb8a02b3553ba3092f9e7a16bd411364912e25cee1d2644d",
+    "official/Starter_Kit/engine.py": "f42c38fa30b44b55f3963e67f836134b49f5afbcf810e781f289d6458d826390"
+  },
+  "opponents": [
+    "reference",
+    "frozen_v1",
+    "equity",
+    "polar"
+  ],
+  "opponent_sha256": {
+    "reference": "2ab5ca36c60cfa8aeb0992fb94ec65ec426a0b42982184229b780cdb195f60af",
+    "frozen_v1": "2ab5ca36c60cfa8aeb0992fb94ec65ec426a0b42982184229b780cdb195f60af",
+    "equity": "2db755d25643870463a051985bccf650ab662d5994cba58e1f7f3c7118a0c915",
+    "polar": "2db755d25643870463a051985bccf650ab662d5994cba58e1f7f3c7118a0c915"
+  },
+  "stage": 1,
+  "matches_per_opponent": 20,
+  "seed_prefix": "improve-final-v1",
+  "selection": "Locked before fresh seeds. Keep candidate unchanged regardless of results.",
+  "method": "Baseline then candidate on each opponent's same logical CPU; native clocks, full duplicate matches."
+}

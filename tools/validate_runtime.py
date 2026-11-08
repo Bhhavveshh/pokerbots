@@ -19,9 +19,15 @@ def main():
     parser.add_argument("--stage", type=int, choices=(1, 2), default=2)
     parser.add_argument("--seed", default="discard-runtime-1")
     parser.add_argument("--output", required=True)
+    parser.add_argument("--cpu", type=int, default=0)
+    parser.add_argument("--frozen-opponent", action="store_true")
     args = parser.parse_args()
-    affinity, source = one_cpu(), snapshot()
-    report = run_match(ROOT / "tools/guarded_bot.py", opponent_path(args.opponent),
+    affinity, source = one_cpu(args.cpu), snapshot()
+    opponent = opponent_path(args.opponent)
+    if args.frozen_opponent:
+        from tools.experiments import opponent_entry
+        opponent = opponent_entry(args.opponent)
+    report = run_match(ROOT / "tools/guarded_bot.py", opponent,
                        args.stage, args.seed, log_dir=ROOT / "tmp/official_guarded" / args.seed)
     if report["forfeits"] or report["candidate_notices"] or report["candidate_stderr_bytes"]:
         raise AssertionError("Guarded official match failed; inspect " + report["log_dir"])

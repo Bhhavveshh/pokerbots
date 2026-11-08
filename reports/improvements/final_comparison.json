@@ -1,0 +1,38 @@
+{
+  "paired": {
+    "point_delta": -0.0375,
+    "bb_per_hand_delta": -0.03189062499999998,
+    "point_delta_95pct_bootstrap": [
+      -0.1375,
+      0.0625
+    ],
+    "chip_delta_95pct_bootstrap": [
+      -0.24865624999999997,
+      0.165453125
+    ],
+    "seed_blocks": 20,
+    "matched_matches": 80,
+    "note": "Whole seed blocks are resampled across all opponents; small panels are exploratory."
+  },
+  "baseline": {
+    "matches": 80,
+    "wins": 63,
+    "draws": 0,
+    "losses": 17,
+    "match_points": 0.7875,
+    "bb_per_hand": 2.279328125,
+    "hands": 32000
+  },
+  "candidate": {
+    "matches": 80,
+    "wins": 60,
+    "draws": 0,
+    "losses": 20,
+    "match_points": 0.75,
+    "bb_per_hand": 2.2474375,
+    "hands": 32000
+  },
+  "plan_sha256": "0f738e8e4465920313a78b5f7a7c97a52f70c79ce261f93f7b3a250674fc32f1",
+  "plan_hash_format": "SHA256 of canonical JSON: sorted keys, compact separators, UTF-8",
+  "no_tuning_on_final_seeds": true
+}

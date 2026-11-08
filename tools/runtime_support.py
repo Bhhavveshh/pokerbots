@@ -3,7 +3,7 @@
 import os
 
 
-def one_cpu():
+def one_cpu(index=0):
     if os.name == "nt":
         import ctypes
         from ctypes import wintypes
@@ -15,12 +15,16 @@ def one_cpu():
         kernel.SetProcessAffinityMask.argtypes = [wintypes.HANDLE, ctypes.c_size_t]
         if not kernel.GetProcessAffinityMask(process, ctypes.byref(process_mask), ctypes.byref(system_mask)):
             raise ctypes.WinError(ctypes.get_last_error())
-        first = process_mask.value & -process_mask.value
+        available = [1 << bit for bit in range(process_mask.value.bit_length())
+                     if process_mask.value & (1 << bit)]
+        if not 0 <= index < len(available):
+            raise ValueError("CPU index is outside this process's permitted CPUs")
+        first = available[index]
         if not kernel.SetProcessAffinityMask(process, first):
             raise ctypes.WinError(ctypes.get_last_error())
         return {"logical_cpus": 1, "affinity_mask": first}
     available = os.sched_getaffinity(0)
-    chosen = min(available)
+    chosen = sorted(available)[index]
     os.sched_setaffinity(0, {chosen})
     return {"logical_cpus": 1, "cpu": chosen}
 

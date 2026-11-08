@@ -1,0 +1,85 @@
+[
+  {
+    "phase": 1,
+    "title": "Consistent flop policy and conservative discard inference",
+    "selected_label": "p1_consistent_no_signal",
+    "version": "v1a",
+    "flags": {
+      "consistent_flop": true,
+      "discard_signal": false
+    },
+    "reason": "Development win rate rose from 18/24 (75.0%) to 20/24 (83.3%). At the tied 20-win score, this candidate earned more chips than disabling discard optimization. A shared selected pair is used in flop EV and the eventual discard. Uncalibrated policy inference from the opponent discard is disabled; dead-card blocking remains. Adaptation is retained: disabling it did not improve match points and reduced chip earnings. The two-feature interaction matters: disabling both optimization and inference fell to 16/24 and was rejected. An independent synthetic discard audit found only small showdown-equity gains, so the match improvement should not be described as simply choosing much better cards. The factored discard selector also fixes an original loop bug: when multiple alternatives clear the uncertainty threshold, it retains the highest mean rather than the last qualifying pair.",
+    "evidence": [
+      "p0_baseline",
+      "p1_consistent_flop",
+      "p1_consistent_no_signal",
+      "p1_fast_discard",
+      "p1_fast_no_signal",
+      "p1_no_adapt",
+      "p1_no_signal",
+      "discard_audit"
+    ],
+    "limitations": "Six shared seed blocks; development selection among multiple candidates. Paired match-point bootstrap interval is [0, +0.167], and is exploratory. The estimated mechanism and improvement require fresh-seed confirmation. Matches on different logical cores may also differ slightly through sample deadlines. This selector correction is bundled into v1a, so the Phase 1 gain cannot be assigned exclusively to the consistency or inference flags. Fixed-work replay verifies its recorded fixture, not universal equivalence to the legacy selector."
+  },
+  {
+    "phase": 2,
+    "title": "Calibrated preflop ordering; reject costly additions",
+    "selected_label": "p2_preflop",
+    "version": "v2",
+    "flags": {
+      "consistent_flop": true,
+      "discard_signal": false,
+      "preflop_table": true
+    },
+    "reason": "The preflop-only candidate won 20/24 (83.3%) with +5.9670 BB/hand, versus Phase 1 20/24 and +5.8831. On the same-code v2 control it gained three wins and +0.2278 BB/hand. Offline simulation ranks all 1,755 suit-equivalent triples under the actual flop-discard mechanics; its equity ordering replaces the hand-written ordering while roughly preserving opening frequency. Exact river enumeration won 17/24, the response model 18/24, and all three together 19/24, so those switches remain disabled.",
+    "evidence": [
+      "p1_consistent_no_signal",
+      "p2_control",
+      "p2_preflop",
+      "p2_exact",
+      "p2_responses",
+      "p2_bundle",
+      "preflop_training"
+    ],
+    "limitations": "Six seed blocks give wide intervals: the preflop gain over same-code control has a point-change interval of [-0.0833,+0.3333]. The v2 control scored 17/24 versus the earlier equivalent v1a 20/24: fixed-work logic replay matches, but native wall-clock sampling cutoffs and tiny arithmetic changes can cascade through random sampling. Thus the cross-version difference is not attributed solely to preflop strategy. This is a development selection, not confirmed generalization."
+  },
+  {
+    "phase": 3,
+    "title": "Validate CFR, reject its full-match deployment",
+    "selected_label": "p3_control",
+    "version": "v3",
+    "flags": {
+      "consistent_flop": true,
+      "discard_signal": false,
+      "preflop_table": true
+    },
+    "reason": "Actual vanilla CFR passed a 10,000-iteration Kuhn check: value -0.055546 versus known -1/18, exploitability 0.002318 versus uniform 0.458333. Six other finite games also converged under exact best-response evaluation. However the river-CFR candidate won only 15/24 (62.5%) versus its same-code control 20/24 (83.3%), losing 4 reference matches and 1 frozen-v1 match relative to control. Its chip change was -2.9006 BB/hand. Therefore CFR stays disabled; the Phase 2 policy is retained. Production defaults are changed to that selected configuration before freezing v4.",
+    "evidence": [
+      "p2_preflop",
+      "p3_control",
+      "p3_cfr",
+      "cfr_validation"
+    ],
+    "limitations": "The solver is correct only for the restricted one-bet, four-bucket game. It uses sampled public ranges, heuristic reach inference, limited online iterations and omits real re-raises; those approximations plausibly explain poor transfer, but their individual causal contributions were not isolated. Toy exploitability is not full-game exploitability. The repeated control again won 20/24; its slightly higher chips are timing variation, not a new strategic improvement."
+  },
+  {
+    "phase": 4,
+    "title": "Fresh evaluation does not confirm the development win-rate gain",
+    "selected_label": "p4_candidate",
+    "version": "v4",
+    "flags": {},
+    "reason": "The frozen v4 candidate won 60/80 (75.0%) versus v1 baseline 63/80 (78.75%) across 32,000 hands each. Paired point change -0.0375 has a 95% seed-block bootstrap interval [-0.1375,+0.0625]. Both versions won 20/20 against each independent equity/polar policy; candidate vs baseline was 12 vs 13 against reference, and 8 vs 10 against frozen-v1. Thus the tracking gain does not generalize convincingly to this fresh panel. No parameters or candidate code were changed after opening final seeds. The candidate is preserved as an experimental release; a byte-exact frozen v1 baseline artifact is provided as the conservative submission alternative. The candidate had lower charged time on this panel; timing details and full Stage 1/2 guarded checks are recorded separately.",
+    "evidence": [
+      "p4_baseline",
+      "p4_candidate",
+      "final_comparison",
+      "final_timing",
+      "release_parity",
+      "tests",
+      "runtime_stage1",
+      "runtime_stage2",
+      "runtime_reference"
+    ],
+    "limitations": "The interval includes both benefit and harm; this is not proof of a regression or superiority. Synthetic opponents are not the tournament field, and two use related policy code. The baseline alternative is a release acceptance decision, not a tuned new policy; the final candidate and evaluation plan remain unchanged. Local Windows audit checks do not certify the organizer server."
+  }
+]

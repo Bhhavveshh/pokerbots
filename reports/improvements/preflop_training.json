@@ -1,0 +1,11 @@
+{
+  "canonical_classes": 1755,
+  "raw_hands": 22100,
+  "samples_per_class": 512,
+  "seed": 611092,
+  "seconds": 71.10403450000013,
+  "training_worlds": 898560,
+  "runtime_data_bytes": 176652,
+  "limitations": "Uniform opponent triples; both players select a pair using only the sampled flop. Score is an equity-order quantile mapping to the old score distribution, not a GTO chart.",
+  "runtime_data_sha256": "7f85d9897e0e326b4caa805de87fa5740681f44c4566948d12ebf8d9bdf39400"
+}

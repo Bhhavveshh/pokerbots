@@ -18,8 +18,13 @@ class Config:
     samples: int = 96
     discard_samples: int = 128
     adapt: bool = True
-    discard_signal: bool = True
+    discard_signal: bool = False
     optimize_discard: bool = True
+    consistent_flop: bool = True
+    exact_river: bool = False
+    response_tree: bool = False
+    preflop_table: bool = True
+    river_cfr: bool = False
 
     def __post_init__(self):
         for value in (self.particles, self.samples, self.discard_samples):
@@ -37,6 +42,21 @@ class PublicAction:
     facing: int
     pot: int
     board: tuple
+
+
+def select_pair(pairs, fast, outcomes):
+    """Choose one pair for ALL hidden worlds, never separately per runout."""
+    means = [sum(values) / len(values) for values in outcomes]
+    base = pairs.index(fast)
+    best = base
+    for i in range(len(pairs)):
+        differences = [a - b for a, b in zip(outcomes[i], outcomes[base])]
+        count = len(differences)
+        delta = means[i] - means[base]
+        variance = sum((d - delta) ** 2 for d in differences) / max(1, count - 1)
+        if delta > math.sqrt(variance / count) + 0.015 and means[i] > means[best]:
+            best = i
+    return best, tuple(means)
 
 
 def decode_history(history, board, button):
@@ -92,7 +112,8 @@ class OpponentModel:
 
 class Belief:
     """Particles are original triples before discard and kept pairs afterwards."""
-    def __init__(self, original, board, opponent_discard, count, rng, signal=True):
+    def __init__(self, original, board, opponent_discard, count, rng, signal=True,
+                 hands=None, calibrated_preflop=False):
         self.original = original
         self.discard = opponent_discard
         self.signal = signal
@@ -101,8 +122,11 @@ class Belief:
             blocked.add(opponent_discard)
         available = [card for card in range(52) if card not in blocked]
         width = 3 if opponent_discard is None else 2
-        self.hands = [tuple(rng.sample(available, width)) for _ in range(count)]
-        self.weights = [1.0] * count
+        self.hands = (list(hands) if hands is not None else
+                      [tuple(rng.sample(available, width)) for _ in range(count)])
+        self.weights = [1.0] * len(self.hands)
+        self.calibrated_preflop = calibrated_preflop
+        self.enumerated = hands is not None
         self.processed = 0
         self.features = {}
         self.discard_weighted = False
@@ -113,7 +137,11 @@ class Belief:
         if value is None:
             if not board:
                 triple = hand if len(hand) == 3 else hand + (self.discard,)
-                value = three_card_strength(triple)
+                if self.calibrated_preflop:
+                    from .preflop import strength
+                    value = strength(triple)
+                else:
+                    value = three_card_strength(triple)
             else:
                 triple = hand if len(hand) == 3 else hand + (self.discard,)
                 kept = keep_fast(triple, board[:3]) if len(board) == 3 else hand
@@ -179,6 +207,8 @@ class DiscardBot:
         self.last_equity = None
         self.last_samples = 0
         self.discard_values = ()
+        self.planned_keep = None
+        self.last_cfr_iterations = 0
 
     def initialize(self, msg):
         self.total_hands = msg["total_hands"]
@@ -190,6 +220,8 @@ class DiscardBot:
         self.board, self.button = (), button
         self.opponent_discard = None
         self.belief, self.seen_history = None, 0
+        self.planned_keep = None
+        self.last_cfr_iterations = 0
 
     def ingest(self, history, board):
         events = decode_history(history, board, self.button)
@@ -213,26 +245,54 @@ class DiscardBot:
         return min(0.06 if discard else 0.035, share * (1.5 if discard else 0.8))
 
     def prepare_belief(self, board, events):
+        exact = self.config.exact_river and len(board) == 5 and self.opponent_discard is not None
+        if exact and (self.belief is None or not self.belief.enumerated):
+            blocked = set(self.original + board + (self.opponent_discard,))
+            hands = list(combinations([c for c in range(52) if c not in blocked], 2))
+            self.belief = Belief(self.original, board, self.opponent_discard,
+                                 self.config.particles, self.rng, self.config.discard_signal,
+                                 hands=hands, calibrated_preflop=self.config.preflop_table)
         if self.belief is None:
             self.belief = Belief(self.original, board, self.opponent_discard,
-                                 self.config.particles, self.rng, self.config.discard_signal)
+                                 self.config.particles, self.rng, self.config.discard_signal,
+                                 calibrated_preflop=self.config.preflop_table)
         aggressive = self.model.aggression if self.config.adapt else 0.25
         loose = max(0, 0.30 - self.model.fold_rate(1))
         flattening = min(0.65, loose * 1.5 + max(0, aggressive - 0.25) * 1.2) if self.config.adapt else 0
         if not self.belief.update(board, events, aggressive, flattening):
             self.belief = Belief(self.original, board, self.opponent_discard,
-                                 self.config.particles, self.rng, self.config.discard_signal)
+                                 self.config.particles, self.rng, self.config.discard_signal,
+                                 calibrated_preflop=self.config.preflop_table)
             if not self.belief.update(board, events, aggressive, flattening):
                 raise ArithmeticError("opponent belief collapsed")
 
     def sample_equity(self, board, events, deadline):
         self.prepare_belief(board, events)
+        if self.config.exact_river and len(board) == 5 and self.opponent_discard is not None:
+            ours = evaluate(self.hole + board)
+            total = sum(self.belief.weights)
+            rows = []
+            for hand, weight in zip(self.belief.hands, self.belief.weights):
+                if not weight:
+                    continue
+                theirs = evaluate(hand + board)
+                share = 1.0 if ours > theirs else 0.5 if ours == theirs else 0.0
+                rows.append((share, self.belief.feature(hand, board), weight / total))
+            self.last_samples = len(rows)
+            self.last_equity = sum(share * weight for share, _, weight in rows)
+            return rows
         blocked = set(self.original + board)
         if self.opponent_discard is not None:
             blocked.add(self.opponent_discard)
         pool = [card for card in range(52) if card not in blocked]
         opponents = self.belief.sample(self.rng, self.config.samples)
         own_kept = keep_fast(self.original, board[:3]) if len(self.hole) == 3 and board else self.hole
+        planning = (self.config.consistent_flop and self.config.optimize_discard
+                    and len(board) == 3 and len(self.hole) == 3 and self.planned_keep is None)
+        pairs = tuple(combinations(self.original, 2)) if planning else ()
+        outcomes = [[] for _ in pairs]
+        if self.config.consistent_flop and self.planned_keep is not None:
+            own_kept = self.planned_keep
         rows = []
         for i, opponent in enumerate(opponents):
             if i >= 16 and i % 16 == 0 and time.perf_counter() >= deadline:
@@ -246,11 +306,19 @@ class DiscardBot:
             theirs = keep_fast(opponent, completed[:3]) if len(opponent) == 3 else opponent
             a, b = evaluate(ours + completed), evaluate(theirs + completed)
             value = 1.0 if a > b else 0.5 if a == b else 0.0
+            if planning:
+                for j, pair in enumerate(pairs):
+                    score = evaluate(pair + completed)
+                    outcomes[j].append(1.0 if score > b else 0.5 if score == b else 0.0)
             feature = self.belief.feature(opponent, board) if board else three_card_strength(opponent)
             rows.append((value, feature))
+        if planning:
+            selected, self.discard_values = select_pair(pairs, own_kept, outcomes)
+            self.planned_keep = pairs[selected]
+            rows = [(outcomes[selected][i], row[1]) for i, row in enumerate(rows)]
         self.last_samples = len(rows)
         self.last_equity = sum(row[0] for row in rows) / len(rows)
-        return rows
+        return [(outcome, feature, 1 / len(rows)) for outcome, feature in rows]
 
     @staticmethod
     def fallback(req):
@@ -279,7 +347,18 @@ class DiscardBot:
             return fallback
         deadline = time.perf_counter() + self.allowance(req["time_left_ms"])
         legal, street = req["legal_actions"], STREETS.index(req["street"])
-        strength = three_card_strength(self.original)
+        if (self.config.river_cfr and street == 3 and req["to_call"] == 0
+                and "raise" in legal and req["pot"] >= 12
+                and self.opponent_discard is not None
+                and not any(e.street == 3 and not e.opponent for e in events)):
+            from .river import solve_river
+            cfr_deadline = time.perf_counter() + 2 * self.allowance(req["time_left_ms"])
+            return solve_river(self, req, board, events, cfr_deadline)
+        if self.config.preflop_table and street == 0:
+            from .preflop import strength as calibrated_strength
+            strength = calibrated_strength(self.original)
+        else:
+            strength = three_card_strength(self.original)
         if street == 0 and not any(e.kind == "raise" for e in events):
             if self.button:
                 if strength < 0.53:
@@ -310,6 +389,9 @@ class DiscardBot:
             best_value = max(0, call_value)
         else:
             best, best_value = fallback, equity * req["pot"]
+            if self.config.response_tree and street == 3 and not self.button:
+                from .responses import river_check_value
+                best_value = river_check_value(req, rows, self.model.aggression)
         if "raise" not in legal or (req["to_call"] and equity < 0.65):
             return best
         targets = {self.raise_to(req, req["opp_bet"] + max(2, req["pot"] * size))["amount"]
@@ -320,17 +402,17 @@ class DiscardBot:
             risk, opponent_call = target - req["my_bet"], target - req["opp_bet"]
             final_pot = req["pot"] + risk + opponent_call
             price = opponent_call / final_pot
-            value = 0
-            for outcome, feature in rows:
-                continuing = self.continuation(feature, price, street)
-                value += ((1 - continuing) * req["pot"]
-                          + continuing * (outcome * final_pot - risk))
-            value /= len(rows)
+            from .responses import raise_value
+            value = raise_value(req, target, rows,
+                                lambda feature, price: self.continuation(feature, price, street),
+                                self.model.aggression, self.config.response_tree)
             if value > best_value + max(0.3, req["pot"] * 0.04):
                 best, best_value = self.raise_to(req, target), value
         return best
 
     def choose_discard(self, board, time_left_ms):
+        if self.config.consistent_flop and self.planned_keep is not None:
+            return next(card for card in self.original if card not in self.planned_keep)
         pairs = tuple(combinations(self.original, 2))
         fast = keep_fast(self.original, board)
         if not self.config.optimize_discard or time_left_ms <= self.reserve_ms:
@@ -357,15 +439,5 @@ class DiscardBot:
             for j, pair in enumerate(pairs):
                 ours = evaluate(pair + completed)
                 outcomes[j].append(1.0 if ours > score else 0.5 if ours == score else 0.0)
-        means = [sum(values) / len(values) for values in outcomes]
-        self.discard_values = tuple(means)
-        base = pairs.index(fast)
-        best = base
-        for i in range(len(pairs)):
-            differences = [a - b for a, b in zip(outcomes[i], outcomes[base])]
-            count = len(differences)
-            delta = means[i] - means[base]
-            variance = sum((d - delta) ** 2 for d in differences) / max(1, count - 1)
-            if delta > math.sqrt(variance / count) + 0.015 and means[i] > means[best]:
-                best = i
+        best, self.discard_values = select_pair(pairs, fast, outcomes)
         return next(card for card in self.original if card not in pairs[best])
