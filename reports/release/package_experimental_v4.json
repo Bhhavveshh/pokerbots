@@ -1,0 +1,65 @@
+{
+  "seed": "discard-package-experimental_v4",
+  "stage": 1,
+  "hands_scheduled": 40,
+  "hands_played": 40,
+  "profit_chips": 1536,
+  "raw_chips": 1536,
+  "bb_per_hand": 19.2,
+  "capped_delta": 400,
+  "capped_chips_per_hand": 10.0,
+  "match_points": 1,
+  "candidate_notices": 0,
+  "opponent_notices": 0,
+  "forfeits": [],
+  "forfeit_at": null,
+  "legs": [
+    {
+      "bot": "A",
+      "leg": 1,
+      "peak_working_set_bytes": 18571264,
+      "requests": 88,
+      "max_charged_reply_seconds": 0,
+      "charged_seconds": 0.0,
+      "notices": 0,
+      "stderr_bytes": 0,
+      "exit_code": 0
+    },
+    {
+      "bot": "B",
+      "leg": 1,
+      "peak_working_set_bytes": 11776000,
+      "requests": 101,
+      "max_charged_reply_seconds": 0,
+      "charged_seconds": 0.0,
+      "notices": 0,
+      "stderr_bytes": 0,
+      "exit_code": 0
+    },
+    {
+      "bot": "A",
+      "leg": 2,
+      "peak_working_set_bytes": 18530304,
+      "requests": 96,
+      "max_charged_reply_seconds": 0,
+      "charged_seconds": 0.0,
+      "notices": 0,
+      "stderr_bytes": 0,
+      "exit_code": 0
+    },
+    {
+      "bot": "B",
+      "leg": 2,
+      "peak_working_set_bytes": 11866112,
+      "requests": 112,
+      "max_charged_reply_seconds": 0,
+      "charged_seconds": 0.0,
+      "notices": 0,
+      "stderr_bytes": 0,
+      "exit_code": 0
+    }
+  ],
+  "candidate_stderr_bytes": 0,
+  "log_dir": "tmp\\package_verification\\experimental_v4\\logs",
+  "runner_summary": "Seed discard-package-experimental_v4 | 40 of 40 hands played (2 legs of 20)\n  A  tmp\\package_verification\\experimental_v4\\bot.py net   +1536   time used   0.00 s (bank 30 s per leg)   notices 0\n  B  official\\Starter_Kit\\bot.py      net   -1536   time used   0.00 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\package_verification\\experimental_v4\\logs\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+}

@@ -6,7 +6,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from pokerbot.agent import Config, DiscardBot, select_pair
+from pokerbot.experimental_agent import Config, DiscardBot, select_pair
 from tests.test_official import cards
 from tools.experiments import paired
 from tools.experiments import entry, ROOT

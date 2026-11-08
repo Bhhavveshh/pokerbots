@@ -9,11 +9,14 @@ Immutable strategy snapshots and matched-seed comparisons live in `experiments/`
 and `reports/improvements/`. Tracking data and final fresh-seed evaluation are
 reported separately, including unsuccessful changes.
 
-**Fresh validation did not confirm an improvement:** v1 won 63/80 matches; the
-v4 candidate won 60/80. The working source is the frozen, faster v4 candidate.
-Packaging also exports `dist/discard-holdem-baseline.zip` from the byte-exact v1
-snapshot as the conservative submission alternative. Both artifacts contain
-`bot.py` at ZIP root; see [RESULTS.md](RESULTS.md) before choosing an upload.
+**Default release: v1 baseline**, with the best observed fresh-panel result:
+63/80 wins (78.75%) versus the v4 candidate's 60/80 (75%). The difference is
+statistically inconclusive. `bot.py` and the submission ZIP now run byte-exact v1.
+The release identity and file hashes are in `experiments/release.json`.
+
+V4 remains available in its immutable snapshot, a separate experimental ZIP and
+`pokerbot/experimental_agent.py` for later development. Historical results are
+preserved; promoting v1 does not rewrite the experiment or claim universal superiority.
 
 ## Actual rules
 
@@ -68,14 +71,15 @@ interpreter when reproducing competition-version checks. It is excluded from Git
 and the submission. No packages are required.
 
 ```powershell
-python -m tools.experiments evaluate reproduce-final --version v4 --opponents reference frozen_v1 equity polar --matches 20 --seeds improve-final-v1 --cpu 0
+python -m tools.experiments evaluate reproduce-baseline --version v1 --opponents reference frozen_v1 equity polar --matches 20 --seeds improve-final-v1 --cpu 0
 python -m tools.validate_cfr
 python -m tools.improvement_report
 python -m tools.build_report
 python -m tools.package
 ```
 
-The first command reproduces the frozen final comparison under a new report label.
+The first command reproduces the frozen baseline panel under a new report label.
+Use a different label and `--version v4` to reproduce the historical candidate.
 Each match uses one CPU; it may take several minutes. Existing completed labels
 cannot be overwritten. The original final plan, shard commands and hash records
 are documented in [experiments/README.md](experiments/README.md).
@@ -89,21 +93,19 @@ can introduce variation even with fixed RNG seeds.
 
 ## How the bot works
 
-1. Preflop, use an offline simulated ordering of all 1,755 suit-equivalent
-   three-card hands. Use position, price, raise history and bounded Monte Carlo
-   equity when facing a raise. This is an equity table, not equilibrium charts.
+1. Preflop, estimate three-card flexibility and use position, price, raise history
+   and bounded Monte Carlo equity when facing a raise.
 2. Before the discard, model opponent **triples**. A simulated hand chooses which
    two cards to keep using only that simulation's flop. It never chooses a pair
    using the simulated turn/river.
-3. Compare all three pairs on common sampled worlds and commit to one retained
-   pair for flop equity and the actual discard. Prefer the fast draw-aware pair
-   unless the paired samples justify switching. With no prior flop decision,
-   evaluate at discard time. All-in discards still occur. Simultaneous choices
-   cannot observe one another.
-4. Once discards are revealed, rebuild the range of opponent **pairs** and replay
-   observed public betting. Both discarded cards are excluded from future boards
-   and remaining opponent cards. The uncalibrated heuristic about why the opponent
-   chose that discard is disabled in the selected policy.
+3. At the real discard, evaluate all three candidate pairs on shared random
+   opponent hands/runouts. Prefer the draw-aware fast choice unless the paired
+   samples give enough evidence to switch. Opponent choices are modeled from the
+   flop only; simultaneous choices cannot observe one another.
+4. Once discards are revealed, rebuild a range of opponent **pairs conditioned on
+   the public discard**. Apply soft evidence about why that card was discarded,
+   and replay observed public betting. Both discarded cards stay excluded from
+   all future boards and remaining opponent cards.
 5. Compare check/call/fold with a small set of legal raise sizes using sampled
    outcomes and an opponent continuation model. Fold/aggression estimates have
    priors and capped influence. Complete `hand_result` histories supply final
@@ -112,18 +114,17 @@ can introduce variation even with fixed RNG seeds.
    deadline checks. Low-bank decisions fall back to legal check/fold and a cheap
    flop-based discard.
 
-Exact river enumeration, a response-tree model and a genuine restricted river
-CFR solver remain available behind configuration flags, disabled in the v4 candidate.
-Their full-match evidence and rejected configurations are retained in the ledger.
-The CFR solver passes known Kuhn-value and finite-game best-response checks. It
-models only one bet size and four strength buckets, omitting actual re-raises.
-This does not establish a full-game equilibrium or safe subgame guarantee.
-The method follows the [original CFR research](https://proceedings.neurips.cc/paper/2007/hash/08d98638c6fcd194a4b1e6992063e944-Abstract.html); the implementation here is locally authored.
-
 This is an original heuristic policy, not a solved equilibrium or a guarantee of
 tournament wins. It approximates future betting and discard behavior. Synthetic
 opponents, especially those sharing our policy components, do not establish low
 exploitability against other teams.
+
+The experimental v4 agent adds consistent flop/discard selection, an offline
+preflop ordering and optional exact-river, response-tree and CFR models. Its real
+CFR implementation passes known finite-game checks, but the one-bet river model
+performed worse in full matches and remains an experiment. It is not imported by
+the default v1 runtime. Compare frozen v1/v4 policies using `tools.experiments`;
+see [IMPROVEMENT_LOG.md](IMPROVEMENT_LOG.md) for retained and rejected changes.
 
 ## Source map
 
@@ -134,7 +135,8 @@ exploitability against other teams.
 | `pokerbot/agent.py` | Triple/pair beliefs, equity, action EV, adaptation and time |
 | `pokerbot/discard.py` | Flop-only keep policy, draws and soft discard evidence |
 | `pokerbot/cards.py` | Fast standard hand evaluator and testing oracle |
-| `pokerbot/preflop.py`, `preflop_data.json` | Offline equity ordering loaded read-only |
+| `pokerbot/experimental_agent.py` | Editable v4 experiment; excluded from production ZIP |
+| `pokerbot/preflop.py`, `preflop_data.json` | Experimental offline equity ordering |
 | `pokerbot/cfr.py`, `river.py` | Experimental finite river-game CFR |
 | `pokerbot/responses.py` | Optional weighted response-tree EV |
 | `pokerbot/testing.py`, `benchmarks.py` | Locally authored test opponents; not submitted |
@@ -151,9 +153,11 @@ still run, but they are not imported by the current bot or included in its archi
 ## Submission artifact
 
 `python -m tools.package` creates `dist/discard-holdem-submission.zip`, with
-`bot.py` at the top level and the current v4 candidate modules. It also exports
-`dist/discard-holdem-baseline.zip` directly from the tested v1 snapshot, refreshes
-the previous runtime ZIP filename and creates a full source/reproducibility ZIP.
-The packager enforces the 5 MB limit and verifies real protocol replies from the
-archives without falling back to workspace modules, then runs each ZIP through
-the supplied engine. No Unstop upload is automated.
+`bot.py` at the top level and only the selected v1 runtime modules. The aliases
+`discard-holdem-baseline.zip` and `pokerbot-runtime.zip` contain the same bytes.
+`dist/discard-holdem-experimental-v4.zip` preserves the historical v4 candidate;
+`pokerbot-source.zip` contains the source, snapshots, tests and evidence for later work.
+
+The packager enforces the 5 MB limit, verifies real protocol replies directly from
+both versioned ZIPs and tests both through the supplied engine. No Unstop upload
+is automated. The organizer server sandbox remains unverified.

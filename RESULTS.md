@@ -1,6 +1,7 @@
 # Discard Hold'em: four-phase results
 
-The runtime is frozen as `v4.zip`; its file hashes match the current bot.
+The default bot is the selected **v1 baseline**, byte-identical to its tested snapshot.
+The v4 candidate and its complete experimental evidence are preserved for later work.
 The full experiment ledger, retained/rejected changes and development uncertainty
 are in [IMPROVEMENT_LOG.md](IMPROVEMENT_LOG.md). `experiments/final_plan.json` was
 locked before opening the final seeds. No strategy was tuned on final results.
@@ -26,15 +27,15 @@ hands, normal official clocks and one logical CPU. Baseline and candidate use th
 same seeds and the same CPU for each opponent. Independently authored equity/polar
 policies share our card evaluator but none of our range, action or discard code.
 
-| Opponent | Original wins / 20 | Final wins / 20 | Original BB/hand | Final BB/hand |
+| Opponent | Baseline v1 wins / 20 | Candidate v4 wins / 20 | Baseline BB/hand | Candidate BB/hand |
 |---|---:|---:|---:|---:|
 | reference | 13 | 12 | +0.1863 | +0.1061 |
 | frozen_v1 | 10 | 8 | -0.1319 | -0.3805 |
 | equity | 20 | 20 | +4.7561 | +4.7061 |
 | polar | 20 | 20 | +4.3069 | +4.5581 |
 
-Original: **63/80 wins (78.8%)**, 0 draws.
-Final: **60/80 wins (75.0%)**, 0 draws.
+Baseline v1: **63/80 wins (78.8%)**, 0 draws.
+Candidate v4: **60/80 wins (75.0%)**, 0 draws.
 Each version played 32,000 hands. The two versions together played 64,000 hands.
 
 Paired match-point change: **-0.037** per match; approximate 95%
@@ -43,31 +44,32 @@ Chip change: -0.0319 BB/hand; interval [-0.2487, +0.1655].
 
 The interval includes zero: this panel does **not** establish a reliable improvement.
 
-Final capped tiebreak score on this schedule: +0.4695 chips per hand.
+Candidate v4 capped tiebreak score on this schedule: +0.4695 chips per hand.
 BB/hand is raw chips / scheduled hands / 2. Match points, rather than chip totals
 against passive bots, are the primary selection objective. Paired blocks contain
 the same deal seed across all opponents; individual hands are not independent samples.
 
 ## Release choice
 
-The working source and `dist/discard-holdem-submission.zip` preserve frozen v4 as
-an experimental candidate. `dist/discard-holdem-baseline.zip` exports byte-exact
-v1 runtime files as the conservative submission alternative. The candidate and
-its test results were not altered after final evaluation. Exporting the existing
+At the user's request, the working source and `dist/discard-holdem-submission.zip`
+now use the v1 baseline with the best observed result. `dist/discard-holdem-baseline.zip`
+is an alias of that release. `dist/discard-holdem-experimental-v4.zip` preserves the
+frozen v4 candidate; its editable agent is `pokerbot/experimental_agent.py`.
+The historical candidate and its test results were not altered. Promoting the existing
 baseline is a release acceptance decision, not a tuned replacement policy.
 The sample does not establish that either version is universally stronger.
 
 ## Runtime and correctness
 
-Python 3.11.9 correctness suite: **69 tests passed**.
+Python 3.11.9 correctness suite: **70 tests passed**.
 Runtime audit hooks reject bot file mutations, sockets and child processes.
 The unchanged supplied runner enforces real startup, per-reply, bank and wall limits.
 
 | Stage / opponent | Hands | Leg 1 charged | Leg 2 charged | Bank / leg | Peak memory |
 |---|---:|---:|---:|---:|---:|
-| 1 / starter | 400 | 3.216s | 2.952s | 30s | 17.1 MiB |
-| 2 / starter | 1000 | 13.830s | 10.587s | 75s | 17.2 MiB |
-| 2 / reference | 1000 | 5.076s | 4.926s | 75s | 17.1 MiB |
+| 1 / starter | 400 | 13.921s | 12.283s | 30s | 14.8 MiB |
+| 2 / starter | 1000 | 46.348s | 45.761s | 75s | 15.1 MiB |
+| 2 / reference | 1000 | 22.649s | 21.037s | 75s | 14.7 MiB |
 
 Final comparisons and guarded runs had no forfeits, candidate notices or stderr errors.
 The submission ZIP is additionally imported directly and run through the official

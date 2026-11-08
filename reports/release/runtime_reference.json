@@ -1,0 +1,84 @@
+{
+  "seed": "release-v1-reference",
+  "stage": 2,
+  "hands_scheduled": 1000,
+  "hands_played": 1000,
+  "profit_chips": 1497,
+  "raw_chips": 1497,
+  "bb_per_hand": 0.7485,
+  "capped_delta": 1000,
+  "capped_chips_per_hand": 1.0,
+  "match_points": 1,
+  "candidate_notices": 0,
+  "opponent_notices": 0,
+  "forfeits": [],
+  "forfeit_at": null,
+  "legs": [
+    {
+      "bot": "A",
+      "leg": 1,
+      "peak_working_set_bytes": 15405056,
+      "requests": 1150,
+      "max_charged_reply_seconds": 0.14099999999962165,
+      "charged_seconds": 22.649000000026717,
+      "notices": 0,
+      "stderr_bytes": 0,
+      "exit_code": 0
+    },
+    {
+      "bot": "B",
+      "leg": 1,
+      "peak_working_set_bytes": 15540224,
+      "requests": 1214,
+      "max_charged_reply_seconds": 0.06300000000192085,
+      "charged_seconds": 18.081999999962136,
+      "notices": 0,
+      "stderr_bytes": 0,
+      "exit_code": 0
+    },
+    {
+      "bot": "A",
+      "leg": 2,
+      "peak_working_set_bytes": 15081472,
+      "requests": 1132,
+      "max_charged_reply_seconds": 0.07800000000133878,
+      "charged_seconds": 21.03700000002209,
+      "notices": 0,
+      "stderr_bytes": 0,
+      "exit_code": 0
+    },
+    {
+      "bot": "B",
+      "leg": 2,
+      "peak_working_set_bytes": 15740928,
+      "requests": 1145,
+      "max_charged_reply_seconds": 0.09400000000096043,
+      "charged_seconds": 17.438999999987573,
+      "notices": 0,
+      "stderr_bytes": 0,
+      "exit_code": 0
+    }
+  ],
+  "candidate_stderr_bytes": 0,
+  "log_dir": "tmp\\official_guarded\\release-v1-reference",
+  "runner_summary": "Seed release-v1-reference | 1000 of 1000 hands played (2 legs of 500)\n  A  tools\\guarded_bot.py             net   +1497   time used  43.69 s (bank 75 s per leg)   notices 0\n  B  tmp\\experiment_entries\\544edd953136895a\\bot.py net   -1497   time used  35.52 s (bank 75 s per leg)   notices 0\nResult: A wins\nCapped delta: A +1000, B -1000 (C = 1000)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_guarded\\release-v1-reference\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt",
+  "opponent": "reference",
+  "source_sha256": {
+    "bot.py": "b31ed0798ae389157e69ea906c94fd1a70a59833cc0e9b0036d08e07062d5f7f",
+    "pokerbot/__init__.py": "c634e68a7c5f27d70c7d434318f450fd120059c07d253cb52924ec02fdec5eb0",
+    "pokerbot/__main__.py": "9eb2bc27c70ec8f43eb2ec40c331d87268aa7d8137f80abd5b35f458396ef692",
+    "pokerbot/cards.py": "4a7859484b274b7a49068351b901b9f09e090c03c9dfa3bc36022eb045c37f53",
+    "pokerbot/discard.py": "496d4c631e8d2381a40405fb55268e3329e41cd2a67ec29bfb938d534a1b8353",
+    "pokerbot/agent.py": "9359b7d44fe0162ac45d8782d644bfac9ea9634a93a231da9bd718d694fe418f",
+    "pokerbot/protocol.py": "020776555d004fae5c01dd9e8277d55cbf407cc04382e66bdc107549961a710a",
+    "official/Starter_Kit/engine.py": "f42c38fa30b44b55f3963e67f836134b49f5afbcf810e781f289d6458d826390"
+  },
+  "affinity": {
+    "logical_cpus": 1,
+    "affinity_mask": 16
+  },
+  "passed": true,
+  "audit_guards_enabled": true,
+  "clocks_enabled": true,
+  "limitations": "Unmodified supplied runner, with metrics instrumentation and audit guards. Local Windows Python 3.11; does not certify the organizer Linux sandbox."
+}

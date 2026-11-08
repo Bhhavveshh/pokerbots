@@ -118,6 +118,14 @@ Paired match-point change: -0.037; approximate 95%
 whole-seed-block bootstrap interval [-0.138, +0.062].
 Aggregate reports contain the same runs as the four opponent shards; do not double count.
 
+## Current default release
+
+At the user's request, `v1` is now the default `bot.py` and submission ZIP.
+Its runtime is byte-identical to the selected snapshot. The v4 experiment remains
+preserved in its archive and editable experimental agent; historical results above
+are unchanged. Release hashes are in `experiments/release.json`; fresh verification
+is in `reports/release/`.
+
 All snapshots, flags, seeds, source hashes, per-opponent outcomes and timing
 remain in `experiments/` and `reports/improvements/`. Rejected candidates remain
 visible; the production bot is not automatically changed by this report.

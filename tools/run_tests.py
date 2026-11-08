@@ -15,7 +15,7 @@ if str(ROOT) not in sys.path:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", default="reports/improvements/tests.json")
+    parser.add_argument("--output", default="reports/release/tests.json")
     args = parser.parse_args()
     start = time.perf_counter()
     suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"), top_level_dir=str(ROOT))

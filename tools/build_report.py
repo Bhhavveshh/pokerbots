@@ -6,7 +6,7 @@ import zipfile
 from pathlib import Path
 
 from tools.experiments import ROOT, summary
-from tools.official_match import snapshot
+from tools.official_match import RUNTIME_FILES, snapshot
 
 
 def read(name):
@@ -15,18 +15,26 @@ def read(name):
 
 def main():
     plan = json.loads((ROOT / "experiments/final_plan.json").read_text())
-    if snapshot() != plan["source_sha256"]:
-        raise AssertionError("Current runtime differs from locked final candidate")
+    release = json.loads((ROOT / "experiments/release.json").read_text())
+    if snapshot() != release["source_sha256"]:
+        raise AssertionError("Current runtime differs from selected release")
     archive = ROOT / "experiments/snapshots/v4.zip"
     if hashlib.sha256(archive.read_bytes()).hexdigest() != plan["candidate_snapshot_sha256"]:
         raise AssertionError("Frozen candidate archive changed")
     with zipfile.ZipFile(archive) as z:
         files = json.loads(z.read("snapshot.json"))["files"]
         for name, expected in files.items():
-            if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != expected:
-                raise AssertionError("Current source differs from tested ZIP: " + name)
-    base, final, comparison, tests = [read(name) for name in
-        ("p4_baseline.json", "p4_candidate.json", "final_comparison.json", "tests.json")]
+            if hashlib.sha256(z.read(name)).hexdigest() != expected:
+                raise AssertionError("Frozen candidate source corrupted: " + name)
+    with zipfile.ZipFile(ROOT / release["snapshot"]) as z:
+        if hashlib.sha256((ROOT / release["snapshot"]).read_bytes()).hexdigest() != release["snapshot_sha256"]:
+            raise AssertionError("Selected release archive changed")
+        for name in RUNTIME_FILES:
+            if z.read(name) != (ROOT / name).read_bytes():
+                raise AssertionError("Production source differs from tested release: " + name)
+    base, final, comparison = [read(name) for name in
+        ("p4_baseline.json", "p4_candidate.json", "final_comparison.json")]
+    tests = json.loads((ROOT / "reports/release/tests.json").read_text())
     if not tests["passed"]:
         raise AssertionError("Correctness tests failed")
     runs = base["runs"] + final["runs"]
@@ -35,7 +43,8 @@ def main():
            r["hands_played"] != r["hands_scheduled"] for r in runs):
         raise AssertionError("Final comparison contains invalid or incomplete matches")
     lines = ["# Discard Hold'em: four-phase results", "",
-        "The runtime is frozen as `v4.zip`; its file hashes match the current bot.",
+        "The default bot is the selected **v1 baseline**, byte-identical to its tested snapshot.",
+        "The v4 candidate and its complete experimental evidence are preserved for later work.",
         "The full experiment ledger, retained/rejected changes and development uncertainty",
         "are in [IMPROVEMENT_LOG.md](IMPROVEMENT_LOG.md). `experiments/final_plan.json` was",
         "locked before opening the final seeds. No strategy was tuned on final results.", "",
@@ -57,7 +66,7 @@ def main():
         "hands, normal official clocks and one logical CPU. Baseline and candidate use the",
         "same seeds and the same CPU for each opponent. Independently authored equity/polar",
         "policies share our card evaluator but none of our range, action or discard code.", "",
-        "| Opponent | Original wins / 20 | Final wins / 20 | Original BB/hand | Final BB/hand |",
+        "| Opponent | Baseline v1 wins / 20 | Candidate v4 wins / 20 | Baseline BB/hand | Candidate BB/hand |",
         "|---|---:|---:|---:|---:|"]
     for opponent in plan["opponents"]:
         a,b = [summary([r for r in d["runs"] if r["opponent"] == opponent]) for d in (base,final)]
@@ -66,8 +75,8 @@ def main():
     pair = comparison["paired"]
     ci = pair["point_delta_95pct_bootstrap"]
     chip_ci = pair["chip_delta_95pct_bootstrap"]
-    lines += ["", f"Original: **{a['wins']}/{a['matches']} wins ({a['wins']/a['matches']:.1%})**, {a['draws']} draws.",
-        f"Final: **{b['wins']}/{b['matches']} wins ({b['wins']/b['matches']:.1%})**, {b['draws']} draws.",
+    lines += ["", f"Baseline v1: **{a['wins']}/{a['matches']} wins ({a['wins']/a['matches']:.1%})**, {a['draws']} draws.",
+        f"Candidate v4: **{b['wins']}/{b['matches']} wins ({b['wins']/b['matches']:.1%})**, {b['draws']} draws.",
         f"Each version played {b['hands']:,} hands. The two versions together played {a['hands']+b['hands']:,} hands.", "",
         f"Paired match-point change: **{pair['point_delta']:+.3f}** per match; approximate 95%",
         f"whole-seed-block bootstrap interval **[{ci[0]:+.3f}, {ci[1]:+.3f}]** ({pair['seed_blocks']} blocks).",
@@ -81,15 +90,16 @@ def main():
         lines += ["", "This fresh panel indicates a regression. The result is retained rather than hidden",
                   "or used for post-hoc tuning; further development needs new evaluation seeds."]
     capped = sum(r["capped_delta"] for r in final["runs"]) / sum(r["hands_scheduled"] for r in final["runs"])
-    lines += ["", f"Final capped tiebreak score on this schedule: {capped:+.4f} chips per hand.",
+    lines += ["", f"Candidate v4 capped tiebreak score on this schedule: {capped:+.4f} chips per hand.",
         "BB/hand is raw chips / scheduled hands / 2. Match points, rather than chip totals",
         "against passive bots, are the primary selection objective. Paired blocks contain",
         "the same deal seed across all opponents; individual hands are not independent samples.", "",
         "## Release choice", "",
-        "The working source and `dist/discard-holdem-submission.zip` preserve frozen v4 as",
-        "an experimental candidate. `dist/discard-holdem-baseline.zip` exports byte-exact",
-        "v1 runtime files as the conservative submission alternative. The candidate and",
-        "its test results were not altered after final evaluation. Exporting the existing",
+        "At the user's request, the working source and `dist/discard-holdem-submission.zip`",
+        "now use the v1 baseline with the best observed result. `dist/discard-holdem-baseline.zip`",
+        "is an alias of that release. `dist/discard-holdem-experimental-v4.zip` preserves the",
+        "frozen v4 candidate; its editable agent is `pokerbot/experimental_agent.py`.",
+        "The historical candidate and its test results were not altered. Promoting the existing",
         "baseline is a release acceptance decision, not a tuned replacement policy.",
         "The sample does not establish that either version is universally stronger.", "",
         "## Runtime and correctness", "",
@@ -99,8 +109,8 @@ def main():
         "| Stage / opponent | Hands | Leg 1 charged | Leg 2 charged | Bank / leg | Peak memory |",
         "|---|---:|---:|---:|---:|---:|"]
     for name in ("runtime_stage1.json","runtime_stage2.json","runtime_reference.json"):
-        r = read(name)
-        if not r["passed"] or r["source_sha256"] != plan["source_sha256"]:
+        r = json.loads((ROOT / "reports/release" / name).read_text())
+        if not r["passed"] or r["source_sha256"] != release["source_sha256"]:
             raise AssertionError("Runtime evidence is stale or failed")
         legs = [x for x in r["legs"] if x["bot"] == "A"]
         peak = max(x["peak_working_set_bytes"] for x in legs) / 1024**2

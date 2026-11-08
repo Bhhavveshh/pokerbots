@@ -8,7 +8,7 @@ import time
 from itertools import combinations
 from pathlib import Path
 
-from pokerbot.agent import Config, DiscardBot
+from pokerbot.experimental_agent import Config, DiscardBot
 from pokerbot.cards import evaluate
 from pokerbot.discard import keep_fast
 from tools.experiments import ROOT
@@ -26,7 +26,8 @@ def main():
         pairs = tuple(combinations(original, 2))
         choices = [keep_fast(original, flop)]
         for consistent in (False, True):
-            bot = DiscardBot(seed=9000 + state, config=Config(consistent_flop=consistent))
+            bot = DiscardBot(seed=9000 + state, config=Config(consistent_flop=consistent,
+                            discard_signal=True, preflop_table=False))
             bot.new_hand(1, original, True)
             bot.allowance = lambda time_left_ms, discard=False: 100.0
             # This diagnostic fixes the sample count. Official performance runs

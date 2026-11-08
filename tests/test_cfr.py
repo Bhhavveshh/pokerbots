@@ -3,7 +3,7 @@ import time
 import unittest
 from unittest.mock import patch
 
-from pokerbot.agent import Config, DiscardBot
+from pokerbot.experimental_agent import Config, DiscardBot
 from pokerbot.cfr import CFR, kuhn_game
 from pokerbot.river import bucket_model, public_catalog, solve_river
 from tests.test_official import cards

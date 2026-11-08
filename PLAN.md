@@ -3,6 +3,10 @@
 The supplied Discard Hold'em rulebook, protocol and engine supersede the original
 ordinary Hold'em assumptions. Source audit: `official/README.md`.
 
+The current default release is v1, promoted at the user's request after the fresh
+comparison. `experiments/release.json` records its exact identity. V4 and the
+four-phase measurements below remain preserved for later development.
+
 1. **Diagnose and align decisions.** Freeze v1 and all tracking opponents. Run
    direct ablations on a fixed development panel. Make flop equity and the actual
    discard use the same retained pair. Test public-discard inference and opponent
@@ -19,7 +23,7 @@ ordinary Hold'em assumptions. Source audit: `official/README.md`.
 4. **Freeze, validate and deliver.** Lock the chosen production version before
    fresh seeds. Compare baseline and final in 80 complete matches each, including
    two independent policies. Run full Stage 1/2 guarded matches, correctness tests,
-   verify ZIP imports and delivery, then publish the source to the private repo.
+   verify ZIP imports and delivery, then publish the source to the repository.
    Fresh validation did not confirm the gain. We preserved that result and
    exported the tested v1 baseline as a conservative submission alternative.
 

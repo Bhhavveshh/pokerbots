@@ -87,6 +87,15 @@ def main():
         lines += ["", f"Paired match-point change: {result['point_delta']:+.3f}; approximate 95%",
                   f"whole-seed-block bootstrap interval [{ci[0]:+.3f}, {ci[1]:+.3f}].",
                   "Aggregate reports contain the same runs as the four opponent shards; do not double count."]
+    release_file = ROOT / "experiments/release.json"
+    if release_file.exists():
+        release = json.loads(release_file.read_text())
+        lines += ["", "## Current default release", "",
+                  f"At the user's request, `{release['version']}` is now the default `bot.py` and submission ZIP.",
+                  "Its runtime is byte-identical to the selected snapshot. The v4 experiment remains",
+                  "preserved in its archive and editable experimental agent; historical results above",
+                  "are unchanged. Release hashes are in `experiments/release.json`; fresh verification",
+                  "is in `reports/release/`."]
     lines += ["", "All snapshots, flags, seeds, source hashes, per-opponent outcomes and timing",
               "remain in `experiments/` and `reports/improvements/`. Rejected candidates remain",
               "visible; the production bot is not automatically changed by this report.", ""]

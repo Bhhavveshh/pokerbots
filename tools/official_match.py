@@ -21,9 +21,7 @@ from tools.runtime_support import one_cpu, peak_memory_bytes
 
 ENGINE_PATH = ROOT / "official/Starter_Kit/engine.py"
 RUNTIME_FILES = ("bot.py", "pokerbot/__init__.py", "pokerbot/__main__.py",
-                 "pokerbot/cards.py", "pokerbot/discard.py", "pokerbot/agent.py", "pokerbot/protocol.py",
-                 "pokerbot/responses.py", "pokerbot/preflop.py", "pokerbot/preflop_data.json",
-                 "pokerbot/cfr.py", "pokerbot/river.py")
+                 "pokerbot/cards.py", "pokerbot/discard.py", "pokerbot/agent.py", "pokerbot/protocol.py")
 
 
 def load_engine():

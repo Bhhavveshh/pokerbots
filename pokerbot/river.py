@@ -44,7 +44,7 @@ def bucket_model(hands, scores, own_weights, other_weights, buckets=4):
 def solve_river(bot, req, board, events, deadline):
     # Both inferred ranges use exactly the same PUBLIC information. Actual hero
     # cards select the output bucket only AFTER solving the whole-range game.
-    from .agent import Belief
+    from .experimental_agent import Belief
     own_discard = next(c for c in bot.original if c not in bot.hole)
     discards = own_discard, bot.opponent_discard
     hands = public_catalog(board, discards)

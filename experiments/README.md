@@ -67,3 +67,11 @@ monotonically rising progress curve.
 
 The original v1 build evidence remains in `reports/discard_holdem/`. The earlier
 ordinary two-card Hold'em experiment at `reports/` root is historical only.
+
+## Current release
+
+`release.json` selects v1 as the default bot after the fresh comparison. Its
+runtime files are restored byte for byte, with fresh verification in
+`reports/release/`. V4 is retained in its frozen ZIP and editable
+`pokerbot/experimental_agent.py`; its historical evaluation plan and reports
+remain unchanged. Root `bot.py` and the standard submission ZIP now run v1.
