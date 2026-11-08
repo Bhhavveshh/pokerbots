@@ -1,1 +1,1 @@
-"""A self-contained heads-up Hold'em bot and development harness."""
+"""Discard Hold'em competition bot; older two-card experiments are historical."""

@@ -1,120 +1,127 @@
-# Pokerbot
+# Discard Hold'em Pokerbot
 
-An original Python Hold'em bot, a development engine, and a duplicate-deal league.
-Python **3.11**, standard library only. No runtime installation, network access,
-trained model download, or third-party poker implementation is required.
+Python 3.11 bot for the supplied Pokerbots **Discard Hold'em** competition.
+Standard library only; no runtime installation, writes, sockets or subprocesses.
+The competition entry point is `bot.py`.
 
-## Rules we are assuming
+## Actual rules
 
-The organizer has specified Texas Hold'em but has not supplied the complete rules
-or protocol. Our local environment is **heads-up no-limit**, blinds **1/2**, stacks
-**200 chips (100 BB)**, no ante or rake, and fresh stacks every hand. Stack and
-blind sizes are configurable through `GameConfig`. They are development
-assumptions, not verified tournament settings. We have not implemented unknown
-custom mechanics or a match tie-break cap.
+Three hole cards are dealt to each player. After flop betting, both players
+simultaneously discard one card; both discards become public. Discarding still
+happens after an all-in. Showdown uses the best five cards from the remaining two
+hole cards and five board cards. Heads-up, 200 chips reset every hand, blinds 1/2,
+and a four-bet/raise cap per street (the big blind counts preflop).
 
-## Four phases
+Each match has two legs with fresh processes and swapped seats/cards. Each process
+sees every deal only once and keeps no state between legs. We do not attempt to
+identify duplicate deals or transfer information across processes.
 
-The milestones and priorities are in [PLAN.md](PLAN.md). Machine-readable results
-are saved in `reports/`; development seeds begin at 110800. Final evaluation uses
-a separate seed family and is kept out of parameter selection.
+| Limit | Stage 1 | Stage 2 |
+|---|---:|---:|
+| Hands per leg | 200 | 500 |
+| Time bank per leg | 30 s | 75 s |
+| Wall limit per leg | 90 s | 225 s |
+| Reply limit | 5 s | 5 s |
+| Match chip cap | 400 | 1000 |
 
-1. Correct evaluator, betting engine, baseline opponents, duplicate deals.
-2. Weighted opponent ranges, sampled equity, positional preflop rules, bet EV.
-3. Conservative opponent adaptation, time management, expanded opponent league.
-4. Protocol hardening, Python 3.11 verification, held-out evaluation, packaging.
+Limits marked provisional in the documents can be updated by the organizer. The
+protocol also provides the current bank/hand count in `init` and bank remaining
+on every request. The official startup grace is enforced by the supplied runner.
 
-## Run tests and experiments
+## Read the sources
 
-From this directory with Python 3.11:
+The unmodified kit is in [official/Starter_Kit](official/Starter_Kit/README.md).
+[official/README.md](official/README.md) records file hashes, document precedence,
+and the audit of all three PDFs and supplied Python files. The documents prevail
+if the local kit differs; no contradiction was found in the implemented paths.
+
+**The initial ordinary two-card Hold'em experiment is superseded. Its 78/80 result
+does not measure this game.** Historical modules/reports are retained for provenance
+and regression checks, but are excluded from the submitted bot archive. Current
+results are [RESULTS.md](RESULTS.md) and `reports/discard_holdem/` only.
+
+## Test with the official engine
+
+From this repository root using Python 3.11:
 
 ```powershell
-python -m unittest discover -v
-python tools/run_tests.py
-python -m pokerbot.benchmark --bot baseline --pairs 200 --matches 8 --seed 110800
-python -m pokerbot.benchmark --bot adaptive --opponents baseline calling tight aggressive random equity switching shove --pairs 200 --matches 6 --seed 110800 --output reports/development.json
-python tools/check_evaluator.py
-python -B bot.py
+python official/Starter_Kit/engine.py bot.py official/Starter_Kit/bot.py --seed example
+python official/Starter_Kit/engine.py bot.py official/Starter_Kit/example_bots/random_bot.py --stage 2 --seed example-finals
+python -m tools.run_tests
 ```
 
-On this Windows workspace a private Python 3.11.9 embedded interpreter is available
-at `.tools/python311/python.exe`; it is excluded from the source archive. The
-system Python is 3.13, so use the private interpreter for competition-version
-checks. No packages were installed into the bot runtime.
+This workspace has a private Python 3.11.9 interpreter at
+`.tools/python311/python.exe`; the default system Python is 3.13. Substitute that
+interpreter when reproducing competition-version checks. It is excluded from Git
+and the submission. No packages are required.
 
-`--pairs 200` means 400 hands. Each shuffled deck is played twice with the bots
-swapping seats while cards and button remain fixed. The two results are combined.
-Bot memory persists through a match, resets between matches, and never receives
-the hidden opponent cards or the undealt runout. No duplicate-hand card lookup is
-implemented.
+```powershell
+python -m tools.official_match --opponents starter tight aggressive reference --matches 3 --stage 1 --seed-prefix discard-dev --label development --one-cpu --output reports/discard_holdem/development.json
+python -m tools.official_match --opponents starter tight aggressive shove switching reference no_signal fast_discard --matches 4 --stage 1 --seed-prefix discard-heldout-v1 --label heldout --one-cpu --output reports/discard_holdem/heldout.json
+python -m tools.validate_runtime --opponent starter --stage 1 --seed discard-guard-stage1 --output reports/discard_holdem/runtime_stage1.json
+python -m tools.validate_runtime --opponent starter --stage 2 --seed discard-guard-stage2 --output reports/discard_holdem/runtime_stage2.json
+python -m tools.validate_runtime --opponent reference --stage 2 --seed discard-guard-reference --output reports/discard_holdem/runtime_reference.json
+python -m tools.build_report
+python -m tools.package
+```
 
-## How decisions work
+All performance runs keep the official clocks enabled. Logs go to ignored `tmp/`
+directories; aggregate evidence is saved under `reports/discard_holdem/`. The
+metrics wrapper imports the supplied runner, records its results and clocks, and
+does not alter dealing, betting, discards, scoring or timing semantics. Whole
+matches, not individual paired hands, are the unit of uncertainty.
 
-- **Preflop:** a transparent starting-hand score, position, raise history, price,
-  and sampled equity when facing a raise. Opening and re-raising thresholds are
-  heuristics, not solved poker charts.
-- **Beliefs:** a bounded set of 160 possible opponent hands. Public actions update
-  their weights. Known cards eliminate impossible hands. Hand-strength features
-  are cached only for the current hand.
-- **Equity:** up to 128 showdown samples per decision, with ties worth half a pot.
-  Unknown opponent cards are excluded from each sampled board runout.
-- **Actions:** compare calling/checking with selected half-pot and pot-sized
-  raises, projected opponent continuation, and continuation-weighted showdown
-  outcomes. Uncalled chips are excluded from the amount at risk.
-- **Adaptation:** preflop/postflop fold statistics start with 20 prior observations;
-  aggression has a separate prior. Adjustments are capped. Opponent range
-  inference is softened for loose or aggressive play.
-- **Time:** small per-decision deadlines plus a cumulative reserve. When the
-  internal bank reaches its reserve, use a legal check/fold fallback.
+## How the bot works
 
-The method does not solve future betting rounds, opponent re-raises, or equilibrium
-strategies. It uses a heuristic equity-realization discount before the river.
-Particle approximation and model errors can be exploited by strong opponents.
+1. Preflop, estimate three-card flexibility and use position, price, raise history
+   and bounded Monte Carlo equity when facing a raise.
+2. Before the discard, model opponent **triples**. A simulated hand chooses which
+   two cards to keep using only that simulation's flop. It never chooses a pair
+   using the simulated turn/river.
+3. At the real discard, evaluate all three candidate pairs on shared random
+   opponent hands/runouts. Prefer the draw-aware fast choice unless the paired
+   samples give enough evidence to switch. Opponent choices are modeled from the
+   flop only; simultaneous choices cannot observe one another.
+4. Once discards are revealed, rebuild a range of opponent **pairs conditioned on
+   the public discard**. Apply soft evidence about why that card was discarded,
+   and replay observed public betting. Both discarded cards stay excluded from
+   all future boards and remaining opponent cards.
+5. Compare check/call/fold with a small set of legal raise sizes using sampled
+   outcomes and an opponent continuation model. Fold/aggression estimates have
+   priors and capped influence. Complete `hand_result` histories supply final
+   actions missing from earlier decision requests.
+6. Use the engine's `time_left_ms` with a reserve, bounded particles/samples and
+   deadline checks. Low-bank decisions fall back to legal check/fold and a cheap
+   flop-based discard.
+
+This is an original heuristic policy, not a solved equilibrium or a guarantee of
+tournament wins. It approximates future betting and discard behavior. Synthetic
+opponents, especially those sharing our policy components, do not establish low
+exploitability against other teams.
 
 ## Source map
 
-| File | Responsibility |
+| File | Current role |
 |---|---|
-| `pokerbot/cards.py` | Fast evaluator and independent slow testing oracle |
-| `pokerbot/game.py` | Betting, legal actions, private observations, settlement |
-| `pokerbot/bots.py` | Simple baseline opponents |
-| `pokerbot/strategy.py` | Ranges, equity, action EV, adaptation, time management |
-| `pokerbot/opponents.py` | Additional equity-based and changing-style opponents |
-| `pokerbot/benchmark.py` | Seeded duplicate matches and league reports |
-| `pokerbot/protocol.py` | Validated development JSONL adapter and terminal events |
-| `tests/` | Correctness, edge cases and integration regressions |
-| `tools/compare.py` | Matched-seed development comparison and bootstrap interval |
-| `tools/check_evaluator.py` | Exhaustive category counts and independent oracle checks |
-| `tools/validate_runtime.py` | Single-CPU subprocess matches with audit guards |
+| `bot.py` | Top-level submission entry point; disables bytecode writes |
+| `pokerbot/protocol.py` | Official protocol 1.0 lifecycle, validation and replies |
+| `pokerbot/agent.py` | Triple/pair beliefs, equity, action EV, adaptation and time |
+| `pokerbot/discard.py` | Flop-only keep policy, draws and soft discard evidence |
+| `pokerbot/cards.py` | Fast standard hand evaluator and testing oracle |
+| `pokerbot/testing.py` | Locally authored seeded opponents; not submitted |
+| `tools/official_match.py` | Metrics over the unmodified supplied match engine |
+| `tools/validate_runtime.py` | Official full matches under runtime audit guards |
+| `tests/test_official.py` | Variant, protocol, no-clairvoyance and engine regressions |
 
-The message contract and examples are in [PROTOCOL.md](PROTOCOL.md). It includes
-match reset, decisions and hand-end notifications. Until official details arrive,
-this adapter is a development interface and must not be assumed upload-compatible.
+`pokerbot/game.py`, `strategy.py`, `bots.py`, `opponents.py`, `benchmark.py` and
+`legacy_protocol.py` are the historical two-card experiment. Their old tests can
+still run, but they are not imported by the current bot or included in its archive.
 
-```powershell
-python -m pokerbot.benchmark --bot adaptive --opponents baseline calling tight aggressive random equity value switching shove range --pairs 200 --matches 8 --seed 880000 --one-cpu --output reports/phase4_heldout.json
-python tools/validate_runtime.py --opponent calling --pairs 500 --seed 990100 --output reports/runtime_calling.json
-python tools/validate_runtime.py --opponent equity --pairs 500 --seed 990101 --output reports/runtime_equity.json
-python tools/package.py
-```
+## Submission artifact
 
-The runtime ZIP contains the bot modules and protocol documentation; the source
-ZIP also includes tests, development tools and reports. Packaging verifies a real
-decision imported directly from the runtime archive under Python 3.11.
-
-After the recorded final checks, `python tools/build_report.py` regenerates
-[RESULTS.md](RESULTS.md) and verifies that the core strategy files still match the
-held-out run's hashes. `reports/tests.json` is written by `tools/run_tests.py`.
-
-## Interpreting results
-
-Match-point rate is the average of win=1, draw=0.5 and loss=0. Chip rates are
-reported in **big blinds per hand**, not BB/100. Approximate intervals are based on
-whole independent matches, not individual paired hands. With few matches those
-intervals are weak evidence. Opponent styles are synthetic and do not represent
-the unknown tournament field. Multiple opponents share parts of our code.
-
-Benchmark bot time includes callbacks and decisions but excludes interpreter
-startup, protocol I/O, and time spent inside the development engine. Hardware
-speed and timing cutoffs affect results. Passing local tests does not verify the
-organizer's sandbox or establish tournament compatibility.
+`python -m tools.package` creates `dist/discard-holdem-submission.zip`, with
+`bot.py` at the top level and only the current runtime modules. It also refreshes
+the previous runtime ZIP filename and creates a full source/reproducibility ZIP.
+The packager enforces the 5 MB limit and verifies real protocol replies from the
+archive without falling back to workspace modules. Run the packaged artifact
+through the supplied engine before uploading. No Unstop upload is automated.

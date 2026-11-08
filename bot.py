@@ -1,4 +1,4 @@
-"""Development entry point; official protocol integration is still required."""
+"""Competition entry point: official Discard Hold'em protocol 1.0."""
 
 import sys
 

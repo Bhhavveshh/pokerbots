@@ -1,0 +1,858 @@
+{
+  "label": "development",
+  "variant": "Discard Hold'em",
+  "protocol": "1.0",
+  "stage": 1,
+  "seed_prefix": "discard-dev",
+  "matches_per_opponent": 3,
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "source_sha256": {
+    "bot.py": "b31ed0798ae389157e69ea906c94fd1a70a59833cc0e9b0036d08e07062d5f7f",
+    "pokerbot/__init__.py": "c634e68a7c5f27d70c7d434318f450fd120059c07d253cb52924ec02fdec5eb0",
+    "pokerbot/__main__.py": "9eb2bc27c70ec8f43eb2ec40c331d87268aa7d8137f80abd5b35f458396ef692",
+    "pokerbot/cards.py": "4a7859484b274b7a49068351b901b9f09e090c03c9dfa3bc36022eb045c37f53",
+    "pokerbot/discard.py": "496d4c631e8d2381a40405fb55268e3329e41cd2a67ec29bfb938d534a1b8353",
+    "pokerbot/agent.py": "9359b7d44fe0162ac45d8782d644bfac9ea9634a93a231da9bd718d694fe418f",
+    "pokerbot/protocol.py": "020776555d004fae5c01dd9e8277d55cbf407cc04382e66bdc107549961a710a",
+    "official/Starter_Kit/engine.py": "f42c38fa30b44b55f3963e67f836134b49f5afbcf810e781f289d6458d826390"
+  },
+  "clocks_enabled": true,
+  "results": [
+    {
+      "opponent": "starter",
+      "runs": [
+        {
+          "seed": "discard-dev-0",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 15469,
+          "raw_chips": 15469,
+          "bb_per_hand": 19.33625,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14282752,
+              "requests": 928,
+              "max_charged_reply_seconds": 0.31300000000010186,
+              "charged_seconds": 16.228000000004613,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 11882496,
+              "requests": 1081,
+              "max_charged_reply_seconds": 0.01600000000144064,
+              "charged_seconds": 0.21600000000034925,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14569472,
+              "requests": 940,
+              "max_charged_reply_seconds": 0.10900000000037835,
+              "charged_seconds": 13.327999999994063,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 11902976,
+              "requests": 1103,
+              "max_charged_reply_seconds": 0.01599999999962165,
+              "charged_seconds": 0.3129999999964639,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\starter\\0",
+          "runner_summary": "Seed discard-dev-0 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net  +15469   time used  29.56 s (bank 30 s per leg)   notices 0\n  B  official\\Starter_Kit\\bot.py      net  -15469   time used   0.53 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\starter\\0\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        },
+        {
+          "seed": "discard-dev-1",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 16575,
+          "raw_chips": 16575,
+          "bb_per_hand": 20.71875,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14446592,
+              "requests": 960,
+              "max_charged_reply_seconds": 0.09399999999914144,
+              "charged_seconds": 12.783999999997832,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 11862016,
+              "requests": 1121,
+              "max_charged_reply_seconds": 0.01600000000144064,
+              "charged_seconds": 0.14099999999962165,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14569472,
+              "requests": 940,
+              "max_charged_reply_seconds": 0.07899999999972351,
+              "charged_seconds": 12.76399999999012,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 11866112,
+              "requests": 1086,
+              "max_charged_reply_seconds": 0.01600000000144064,
+              "charged_seconds": 0.20000000000618456,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\starter\\1",
+          "runner_summary": "Seed discard-dev-1 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net  +16575   time used  25.55 s (bank 30 s per leg)   notices 0\n  B  official\\Starter_Kit\\bot.py      net  -16575   time used   0.34 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\starter\\1\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        },
+        {
+          "seed": "discard-dev-2",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 14010,
+          "raw_chips": 14010,
+          "bb_per_hand": 17.5125,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14487552,
+              "requests": 932,
+              "max_charged_reply_seconds": 0.10900000000037835,
+              "charged_seconds": 12.587999999999738,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 11870208,
+              "requests": 1075,
+              "max_charged_reply_seconds": 0.01600000000144064,
+              "charged_seconds": 0.15300000000388536,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14622720,
+              "requests": 924,
+              "max_charged_reply_seconds": 0.06300000000010186,
+              "charged_seconds": 11.450999999995474,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 11862016,
+              "requests": 1062,
+              "max_charged_reply_seconds": 0.01600000000144064,
+              "charged_seconds": 0.10900000000401633,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\starter\\2",
+          "runner_summary": "Seed discard-dev-2 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net  +14010   time used  24.04 s (bank 30 s per leg)   notices 0\n  B  official\\Starter_Kit\\bot.py      net  -14010   time used   0.26 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\starter\\2\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        }
+      ],
+      "wins": 3,
+      "draws": 0,
+      "losses": 0,
+      "mean_bb_per_hand": 19.189166666666665,
+      "match_point_rate": 1,
+      "approx_95pct_half_width": 1.8198241651171814
+    },
+    {
+      "opponent": "tight",
+      "runs": [
+        {
+          "seed": "discard-dev-0",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 1616,
+          "raw_chips": 1616,
+          "bb_per_hand": 2.02,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14491648,
+              "requests": 288,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 14872576,
+              "requests": 342,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14487552,
+              "requests": 269,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 14852096,
+              "requests": 325,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\tight\\0",
+          "runner_summary": "Seed discard-dev-0 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net   +1616   time used   0.00 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\tight.py         net   -1616   time used   0.00 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\tight\\0\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        },
+        {
+          "seed": "discard-dev-1",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 537,
+          "raw_chips": 537,
+          "bb_per_hand": 0.67125,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14479360,
+              "requests": 266,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 14622720,
+              "requests": 330,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14483456,
+              "requests": 240,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 14823424,
+              "requests": 303,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\tight\\1",
+          "runner_summary": "Seed discard-dev-1 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net    +537   time used   0.00 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\tight.py         net    -537   time used   0.00 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\tight\\1\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        },
+        {
+          "seed": "discard-dev-2",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 1029,
+          "raw_chips": 1029,
+          "bb_per_hand": 1.28625,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14368768,
+              "requests": 280,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 14807040,
+              "requests": 346,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14487552,
+              "requests": 248,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 14823424,
+              "requests": 306,
+              "max_charged_reply_seconds": 0,
+              "charged_seconds": 0.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\tight\\2",
+          "runner_summary": "Seed discard-dev-2 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net   +1029   time used   0.00 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\tight.py         net   -1029   time used   0.00 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\tight\\2\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        }
+      ],
+      "wins": 3,
+      "draws": 0,
+      "losses": 0,
+      "mean_bb_per_hand": 1.3258333333333332,
+      "match_point_rate": 1,
+      "approx_95pct_half_width": 0.7641124548200422
+    },
+    {
+      "opponent": "aggressive",
+      "runs": [
+        {
+          "seed": "discard-dev-0",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 3043,
+          "raw_chips": 3043,
+          "bb_per_hand": 3.80375,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14589952,
+              "requests": 727,
+              "max_charged_reply_seconds": 0.1720000000004802,
+              "charged_seconds": 8.312000000003536,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 14970880,
+              "requests": 660,
+              "max_charged_reply_seconds": 0.01600000000144064,
+              "charged_seconds": 0.15799999999944703,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14422016,
+              "requests": 780,
+              "max_charged_reply_seconds": 0.07799999999951979,
+              "charged_seconds": 6.8439999999918655,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 14991360,
+              "requests": 709,
+              "max_charged_reply_seconds": 0.01600000000144064,
+              "charged_seconds": 0.14200000000346336,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\aggressive\\0",
+          "runner_summary": "Seed discard-dev-0 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net   +3043   time used  15.16 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\aggressive.py    net   -3043   time used   0.30 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\aggressive\\0\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        },
+        {
+          "seed": "discard-dev-1",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 1157,
+          "raw_chips": 1157,
+          "bb_per_hand": 1.44625,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14417920,
+              "requests": 793,
+              "max_charged_reply_seconds": 0.10900000000037835,
+              "charged_seconds": 7.045000000003711,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 15040512,
+              "requests": 728,
+              "max_charged_reply_seconds": 0.01600000000144064,
+              "charged_seconds": 0.21899999999550346,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14520320,
+              "requests": 696,
+              "max_charged_reply_seconds": 0.09399999999914144,
+              "charged_seconds": 4.0790000000015425,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 14966784,
+              "requests": 650,
+              "max_charged_reply_seconds": 0.01599999999962165,
+              "charged_seconds": 0.07799999999951979,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\aggressive\\1",
+          "runner_summary": "Seed discard-dev-1 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net   +1157   time used  11.12 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\aggressive.py    net   -1157   time used   0.30 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\aggressive\\1\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        },
+        {
+          "seed": "discard-dev-2",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 1667,
+          "raw_chips": 1667,
+          "bb_per_hand": 2.08375,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14417920,
+              "requests": 714,
+              "max_charged_reply_seconds": 0.1400000000012369,
+              "charged_seconds": 3.9689999999955035,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 15032320,
+              "requests": 643,
+              "max_charged_reply_seconds": 0.015000000001236913,
+              "charged_seconds": 0.015000000001236913,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14528512,
+              "requests": 756,
+              "max_charged_reply_seconds": 0.0930000000007567,
+              "charged_seconds": 4.109000000000378,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 14880768,
+              "requests": 684,
+              "max_charged_reply_seconds": 0.01599999999962165,
+              "charged_seconds": 0.046000000000276486,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\aggressive\\2",
+          "runner_summary": "Seed discard-dev-2 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net   +1667   time used   8.08 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\aggressive.py    net   -1667   time used   0.06 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\aggressive\\2\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        }
+      ],
+      "wins": 3,
+      "draws": 0,
+      "losses": 0,
+      "mean_bb_per_hand": 2.4445833333333336,
+      "match_point_rate": 1,
+      "approx_95pct_half_width": 1.379957893480007
+    },
+    {
+      "opponent": "reference",
+      "runs": [
+        {
+          "seed": "discard-dev-0",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": 519,
+          "raw_chips": 519,
+          "bb_per_hand": 0.64875,
+          "capped_delta": 400,
+          "capped_chips_per_hand": 1.0,
+          "match_points": 1,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14520320,
+              "requests": 515,
+              "max_charged_reply_seconds": 0.14099999999962165,
+              "charged_seconds": 6.699999999998909,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 15093760,
+              "requests": 523,
+              "max_charged_reply_seconds": 0.07799999999951979,
+              "charged_seconds": 5.0,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14508032,
+              "requests": 500,
+              "max_charged_reply_seconds": 0.04700000000048021,
+              "charged_seconds": 4.825999999999112,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 15044608,
+              "requests": 512,
+              "max_charged_reply_seconds": 0.10899999999855936,
+              "charged_seconds": 3.7190000000027794,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\reference\\0",
+          "runner_summary": "Seed discard-dev-0 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net    +519   time used  11.53 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\reference.py     net    -519   time used   8.72 s (bank 30 s per leg)   notices 0\nResult: A wins\nCapped delta: A +400, B -400 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\reference\\0\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        },
+        {
+          "seed": "discard-dev-1",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": -196,
+          "raw_chips": -196,
+          "bb_per_hand": -0.245,
+          "capped_delta": -196,
+          "capped_chips_per_hand": -0.49,
+          "match_points": 0,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14508032,
+              "requests": 507,
+              "max_charged_reply_seconds": 0.2970000000004802,
+              "charged_seconds": 10.093999999993684,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 14983168,
+              "requests": 530,
+              "max_charged_reply_seconds": 0.06300000000010186,
+              "charged_seconds": 6.467000000013286,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14548992,
+              "requests": 551,
+              "max_charged_reply_seconds": 0.07899999999972351,
+              "charged_seconds": 11.467999999984386,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 15073280,
+              "requests": 556,
+              "max_charged_reply_seconds": 0.04700000000048021,
+              "charged_seconds": 8.936000000016065,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\reference\\1",
+          "runner_summary": "Seed discard-dev-1 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net    -196   time used  21.56 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\reference.py     net    +196   time used  15.40 s (bank 30 s per leg)   notices 0\nResult: B wins\nCapped delta: A -196, B +196 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\reference\\1\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        },
+        {
+          "seed": "discard-dev-2",
+          "stage": 1,
+          "hands_scheduled": 400,
+          "hands_played": 400,
+          "profit_chips": -354,
+          "raw_chips": -354,
+          "bb_per_hand": -0.4425,
+          "capped_delta": -354,
+          "capped_chips_per_hand": -0.885,
+          "match_points": 0,
+          "candidate_notices": 0,
+          "opponent_notices": 0,
+          "forfeits": [],
+          "forfeit_at": null,
+          "legs": [
+            {
+              "bot": "A",
+              "leg": 1,
+              "peak_working_set_bytes": 14229504,
+              "requests": 504,
+              "max_charged_reply_seconds": 0.2039999999997235,
+              "charged_seconds": 7.529000000000451,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 1,
+              "peak_working_set_bytes": 14942208,
+              "requests": 519,
+              "max_charged_reply_seconds": 0.1400000000012369,
+              "charged_seconds": 5.840999999996711,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "A",
+              "leg": 2,
+              "peak_working_set_bytes": 14409728,
+              "requests": 493,
+              "max_charged_reply_seconds": 0.09400000000096043,
+              "charged_seconds": 5.51200000001154,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            },
+            {
+              "bot": "B",
+              "leg": 2,
+              "peak_working_set_bytes": 15093760,
+              "requests": 504,
+              "max_charged_reply_seconds": 0.06199999999989814,
+              "charged_seconds": 3.8439999999900465,
+              "notices": 0,
+              "stderr_bytes": 0,
+              "exit_code": 0
+            }
+          ],
+          "candidate_stderr_bytes": 0,
+          "log_dir": "tmp\\official_runs\\development\\reference\\2",
+          "runner_summary": "Seed discard-dev-2 | 400 of 400 hands played (2 legs of 200)\n  A  bot.py                           net    -354   time used  13.04 s (bank 30 s per leg)   notices 0\n  B  tests\\opponents\\reference.py     net    +354   time used   9.68 s (bank 30 s per leg)   notices 0\nResult: B wins\nCapped delta: A -354, B +354 (C = 400)\nLogs: C:\\Users\\Admin\\Desktop\\pokerbots\\tmp\\official_runs\\development\\reference\\2\\match.log, A_leg1_stderr.txt, A_leg2_stderr.txt, B_leg1_stderr.txt, B_leg2_stderr.txt"
+        }
+      ],
+      "wins": 1,
+      "draws": 0,
+      "losses": 2,
+      "mean_bb_per_hand": -0.012916666666666651,
+      "match_point_rate": 0.3333333333333333,
+      "approx_95pct_half_width": 0.657991632630014
+    }
+  ],
+  "limitations": [
+    "Local organizer runner on Windows, not the server sandbox.",
+    "Locally authored synthetic opponents, some share policy code.",
+    "Normal-approximation intervals over whole matches; small samples.",
+    "The organizer random bot is unseeded; our other opponents are seeded.",
+    "Legacy two-card Hold'em reports are not evidence for this variant."
+  ],
+  "affinity": {
+    "logical_cpus": 1,
+    "affinity_mask": 1
+  }
+}

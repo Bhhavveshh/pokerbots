@@ -8,6 +8,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def main():
@@ -21,7 +23,9 @@ def main():
               "source_sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
                                 for folder in ("pokerbot", "tests")
                                 for p in sorted((ROOT / folder).glob("*.py"))}}
-    (ROOT / "reports/tests.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    destination = ROOT / "reports/discard_holdem/tests.json"
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     if not result.wasSuccessful():
         raise SystemExit(1)
 

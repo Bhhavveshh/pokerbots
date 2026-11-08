@@ -1,0 +1,32 @@
+{
+  "tests": 54,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "seconds": 3.0498446999990847,
+  "source_sha256": {
+    "pokerbot\\__init__.py": "c634e68a7c5f27d70c7d434318f450fd120059c07d253cb52924ec02fdec5eb0",
+    "pokerbot\\__main__.py": "9eb2bc27c70ec8f43eb2ec40c331d87268aa7d8137f80abd5b35f458396ef692",
+    "pokerbot\\agent.py": "9359b7d44fe0162ac45d8782d644bfac9ea9634a93a231da9bd718d694fe418f",
+    "pokerbot\\benchmark.py": "f5d452c9cd2230ca78c4ab17e5397eeae19ce297fb124d7f3ce3691b1024ca6f",
+    "pokerbot\\bots.py": "239caa9a519cee223e21147dab85162403cc752051107e5d3ebf49aadfe3dca2",
+    "pokerbot\\cards.py": "4a7859484b274b7a49068351b901b9f09e090c03c9dfa3bc36022eb045c37f53",
+    "pokerbot\\discard.py": "496d4c631e8d2381a40405fb55268e3329e41cd2a67ec29bfb938d534a1b8353",
+    "pokerbot\\game.py": "65cebbd8693edec977cb41da2d6760d9dc8bea2db817fa6fe7645b6ef81d0fad",
+    "pokerbot\\legacy_protocol.py": "a876c6b2aa22595de61f4125a2259ac8a69c4ad10c1627501f0788c5182694f6",
+    "pokerbot\\opponents.py": "0d14253bea06d96fc25b3e24b6d7bc905835f970999af3d3495633db23bbc34c",
+    "pokerbot\\protocol.py": "020776555d004fae5c01dd9e8277d55cbf407cc04382e66bdc107549961a710a",
+    "pokerbot\\strategy.py": "bfe2bc588e8c0c278b11040892778b000575e4ba9a36b0c4ea3914d64c8027d8",
+    "pokerbot\\testing.py": "2e9f0962a97cd2d131db73dad23d35fa9603cc74f8d7a86f5752966a4933def2",
+    "tests\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests\\test_adaptation.py": "3373393d4a5d8537761cb9010d6db794b605c3d71e28160d029422bd26309498",
+    "tests\\test_cards.py": "9da8cc2bed47965e3256aaa8759484504950fa05d9fac036f001b43a77a846b2",
+    "tests\\test_game.py": "60088400454a9c78dfc08aada0c5342ecff8e422c195678ddcdf09c65c146991",
+    "tests\\test_official.py": "d6ce06d65777e6aaf4c8ccd52dbad8499b2e3d2a6f13336bce76bc07e747610c",
+    "tests\\test_protocol.py": "cab00f1b0e69b4b9a6eeeb556a1e631970faf99328c8b1699bf7ec5b1be54ac2",
+    "tests\\test_runtime.py": "8a1c93d3d19498d77b529260642bdef3003cb5479c2354b29f41a3abee4586f6",
+    "tests\\test_strategy.py": "e2fbf05275c64b8336871b79847d61a60c0e32db5f4fc331835111ac6a6eeae2"
+  }
+}

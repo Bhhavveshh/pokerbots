@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from pokerbot.game import Action, Engine
 from pokerbot.bots import CallingBot
-from pokerbot.protocol import MAX_LINE_BYTES, ProtocolSession, parse_observation
+from pokerbot.legacy_protocol import MAX_LINE_BYTES, ProtocolSession, parse_observation
 from tests.test_strategy import observation
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,8 +118,14 @@ class ProtocolTests(unittest.TestCase):
         import random
         from pokerbot.bots import BaselineBot
         from pokerbot.strategy import AdaptiveBot
+        from pokerbot.strategy import StrategyConfig
         session = ProtocolSession()
-        direct = AdaptiveBot(seed=0)
+        # A parity test must not depend on machine load triggering different
+        # sample cutoffs in two otherwise identical legacy simulations.
+        config = StrategyConfig(decision_seconds=1)
+        session.bot.config = config
+        direct = AdaptiveBot(seed=0, config=config)
+        session.bot.expected_hands = direct.expected_hands = 1
 
         class Adapter(CallingBot):
             def act(self, obs):
@@ -142,7 +148,7 @@ class ProtocolTests(unittest.TestCase):
         lines = [b"not json\n", b"[]\n", b"x" * (MAX_LINE_BYTES + 100) + b"\n",
                  b'{"type":"reset","seed":7}\n',
                  (json.dumps({"type": "act", "observation": raw_observation()}) + "\n").encode()]
-        result = subprocess.run([sys.executable, "-B", str(ROOT / "bot.py")],
+        result = subprocess.run([sys.executable, "-B", "-m", "pokerbot.legacy_protocol"],
                                 input=b"".join(lines), capture_output=True, cwd=ROOT, timeout=10)
         self.assertEqual(result.returncode, 0, result.stderr)
         responses = [json.loads(line) for line in result.stdout.splitlines()]

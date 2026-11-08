@@ -1,43 +1,42 @@
-# Pokerbot development
+# Rebuild against the supplied Discard Hold'em rules
 
-## Working assumptions
-
-The organizer has only specified Texas Hold'em and the runtime constraints. The
-local game is heads-up, no-limit, no rake, blinds 1/2, 200 chips per player, and
-stacks reset every hand. These are configurable development assumptions, not
-confirmed tournament rules. The JSONL adapter is our own development protocol.
-Official integration requires the actual protocol and legal-action semantics.
+The initial ordinary Hold'em assumptions are superseded. Canonical organizer
+materials, precedence and hashes are recorded in `official/README.md`.
 
 ## Four sequential phases
 
-1. **Correct foundation:** independent evaluator checks, betting engine,
-   transparent baseline opponents, and duplicate-deal evaluation.
-2. **Range-aware strategy:** positional preflop decisions, weighted opponent
-   hands, bounded equity sampling, and response-aware postflop decisions.
-3. **Adaptation and measurement:** shrinkage-based opponent statistics, bounded
-   adjustments, time allocation, varied opponents, and strategy ablations.
-4. **Submission hardening:** Python 3.11 checks, protocol failure tests, full-length
-   held-out matches, reproducible reports, and a self-contained source archive.
+1. **Audit and integration:** read all three PDFs/kit files, retain the verified
+   evaluator, replace the invented protocol, and validate a real match with the
+   unmodified supplied engine. Preserve the historical prototype for provenance.
+2. **Variant-aware strategy:** three-card preflop/flop beliefs; flop-only simulated
+   discard policies; compare all three real discard choices on common samples;
+   rebuild conditioned pair ranges after exposed discards; block every known dead
+   card; obey the four-raise cap using engine-supplied legality.
+3. **Evaluation:** seeded synthetic opponents and direct ablations; separate
+   development (`discard-dev-*`) from frozen evaluation (`discard-heldout-v1-*`).
+   Report match points first, chip results, exact capped score and uncertainty.
+   Do not tune parameters on the frozen evaluation seeds.
+4. **Runtime and delivery:** full 400/1000-hand official matches with clocks and
+   resource audit guards, Python 3.11 checks, source/diff review, and a <=5 MB ZIP
+   with bot.py at root. Verify the packaged modules through the official runner.
 
-Each phase runs correctness tests and produces measured results before the next.
-Development seeds and final evaluation seeds stay separate. Results against our
-local opponents cannot establish performance against unknown tournament teams.
+## Decisions and limits
 
-## Completion status
+- Use the supplied engine as the test authority; never rewrite its rules to fit
+  our bot. Documents prevail if a discrepancy is found (Rulebook 1.3).
+- A discard is selected from a flop, never from a simulated completed board. The
+  simulation can sample future cards to estimate equity, but a simulated policy
+  sees only information available at its decision time.
+- Do not detect duplicate deals or share state between legs. Model memory is
+  confined to one process/leg and resets on init.
+- Keep standard-library-only heuristics and bounded sampling. Full-game CFR and
+  neural training remain deferred; correctness and reproducible official-engine
+  evidence take priority over additional architecture.
+- Synthetic opponents share some components. Results near zero against the
+  reference/no-signal policies do not establish strategic superiority.
+- Provisional time/score values may change; recheck organizer announcements before
+  submission. Local Windows tests cannot certify the server's Linux sandbox.
 
-- Phase 1 complete: betting/evaluator tests and baseline duplicate league.
-- Phase 2 complete: range-aware policy tested against five local opponents.
-- Phase 3 complete: adaptive candidate and matched-seed strategy ablation.
-- Phase 4 local checks complete: Python 3.11 tests, exhaustive evaluator check,
-  frozen 80-match held-out league, and two guarded 1,000-hand subprocess matches.
-
-See `RESULTS.md` for observations, uncertainty, timing and integration limits.
-Official tournament integration is pending the actual protocol, process lifecycle,
-complete rules and the organizer's runtime. The archives are development bundles.
-
-## Priorities
-
-- P0: legal play, correct settlement, fast evaluator, baseline, runtime protection.
-- P1: ranges, action selection, cautious adaptation, independent evaluation.
-- P2: offline CFR or additional search only if P0/P1 are complete and experiments
-  demonstrate an advantage. They are not part of the initial implementation.
+`RESULTS.md` and `reports/discard_holdem/` contain current evidence. The old JSON
+files at `reports/` root and the historical two-card harness are not competition
+performance evidence. The runtime archive excludes historical modules entirely.
