@@ -1,0 +1,19 @@
+{
+  "opponent": "equity",
+  "hands": 1000,
+  "seed": 990101,
+  "profit_chips": 4128,
+  "bb_per_hand": 2.064,
+  "transport_inclusive_bank_seconds": 27.00491880001846,
+  "startup_seconds": 0.21883319999960804,
+  "max_response_seconds": 0.05239090000031865,
+  "process_peak_working_set_bytes": 15441920,
+  "affinity": {
+    "logical_cpus": 1,
+    "affinity_mask": 1
+  },
+  "wall_seconds_including_engine_and_opponent": 48.12907249999989,
+  "errors": [],
+  "passed": true,
+  "limitations": "Windows audit guards and affinity; not the organizer's Linux sandbox. Transport time includes reset, startup wait, hand-end messages and parent JSON work; it excludes time spent simulating the engine and opponent."
+}

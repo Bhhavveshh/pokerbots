@@ -1,0 +1,19 @@
+{
+  "opponent": "calling",
+  "hands": 1000,
+  "seed": 990100,
+  "profit_chips": 15521,
+  "bb_per_hand": 7.7605,
+  "transport_inclusive_bank_seconds": 43.76118019999922,
+  "startup_seconds": 0.5067905000000792,
+  "max_response_seconds": 0.2998880000000099,
+  "process_peak_working_set_bytes": 15421440,
+  "affinity": {
+    "logical_cpus": 1,
+    "affinity_mask": 1
+  },
+  "wall_seconds_including_engine_and_opponent": 46.53252489999977,
+  "errors": [],
+  "passed": true,
+  "limitations": "Windows audit guards and affinity; not the organizer's Linux sandbox. Transport time includes reset, startup wait, hand-end messages and parent JSON work; it excludes time spent simulating the engine and opponent."
+}

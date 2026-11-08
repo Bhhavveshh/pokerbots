@@ -1,0 +1,59 @@
+{
+  "comparisons": [
+    {
+      "opponent": "aggressive",
+      "matched_matches": 6,
+      "match_point_delta": 0.0,
+      "bb_per_hand_delta": -0.2597916666666666
+    },
+    {
+      "opponent": "baseline",
+      "matched_matches": 6,
+      "match_point_delta": -0.16666666666666666,
+      "bb_per_hand_delta": -0.21562499999999998
+    },
+    {
+      "opponent": "calling",
+      "matched_matches": 6,
+      "match_point_delta": 0.0,
+      "bb_per_hand_delta": 3.17375
+    },
+    {
+      "opponent": "equity",
+      "matched_matches": 6,
+      "match_point_delta": 0.5,
+      "bb_per_hand_delta": 1.7862500000000001
+    },
+    {
+      "opponent": "random",
+      "matched_matches": 6,
+      "match_point_delta": 0.16666666666666666,
+      "bb_per_hand_delta": 0.6999999999999998
+    },
+    {
+      "opponent": "shove",
+      "matched_matches": 6,
+      "match_point_delta": 0.0,
+      "bb_per_hand_delta": 1.5850000000000002
+    },
+    {
+      "opponent": "switching",
+      "matched_matches": 6,
+      "match_point_delta": 0.0,
+      "bb_per_hand_delta": 1.4727083333333333
+    },
+    {
+      "opponent": "tight",
+      "matched_matches": 6,
+      "match_point_delta": 0.0,
+      "bb_per_hand_delta": -0.022291666666666664
+    }
+  ],
+  "equal_weight_match_point_delta": 0.0625,
+  "equal_weight_bb_per_hand_delta": 1.0275,
+  "paired_bootstrap_95pct_point_delta": [
+    -0.020833333333333332,
+    0.125
+  ],
+  "note": "Development-only comparison. Opponent mixture is synthetic; interval is approximate."
+}

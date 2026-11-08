@@ -1,0 +1,274 @@
+{
+  "candidate": "range",
+  "config": {
+    "stack": 200,
+    "small_blind": 1,
+    "big_blind": 2
+  },
+  "pairs_per_match": 200,
+  "seed": 110800,
+  "matches_per_opponent": 6,
+  "results": [
+    {
+      "opponent": "equity",
+      "matches": 6,
+      "hands": 2400,
+      "mean_bb_per_hand": 0.23333333333333336,
+      "approx_95pct_half_width": 0.6695862898918341,
+      "match_point_rate": 0.5,
+      "max_candidate_seconds": 10.285467,
+      "max_decision_seconds": 0.075829,
+      "budget_fallbacks": 0,
+      "runs": [
+        {
+          "seed": 110800,
+          "hands": 400,
+          "profit_chips": 1005,
+          "bb_per_hand": 1.25625,
+          "match_points": 1.0,
+          "candidate_seconds": 6.155814,
+          "candidate_decisions": 913,
+          "max_decision_seconds": 0.028739,
+          "budget_fallbacks": 0,
+          "wall_seconds": 10.552138
+        },
+        {
+          "seed": 111809,
+          "hands": 400,
+          "profit_chips": 529,
+          "bb_per_hand": 0.66125,
+          "match_points": 1.0,
+          "candidate_seconds": 7.758007,
+          "candidate_decisions": 985,
+          "max_decision_seconds": 0.02756,
+          "budget_fallbacks": 0,
+          "wall_seconds": 13.09481
+        },
+        {
+          "seed": 112818,
+          "hands": 400,
+          "profit_chips": -5,
+          "bb_per_hand": -0.00625,
+          "match_points": 0.0,
+          "candidate_seconds": 8.104174,
+          "candidate_decisions": 905,
+          "max_decision_seconds": 0.075829,
+          "budget_fallbacks": 0,
+          "wall_seconds": 13.602652
+        },
+        {
+          "seed": 113827,
+          "hands": 400,
+          "profit_chips": -145,
+          "bb_per_hand": -0.18125,
+          "match_points": 0.0,
+          "candidate_seconds": 4.12527,
+          "candidate_decisions": 925,
+          "max_decision_seconds": 0.042897,
+          "budget_fallbacks": 0,
+          "wall_seconds": 6.823152
+        },
+        {
+          "seed": 114836,
+          "hands": 400,
+          "profit_chips": -875,
+          "bb_per_hand": -1.09375,
+          "match_points": 0.0,
+          "candidate_seconds": 7.21653,
+          "candidate_decisions": 863,
+          "max_decision_seconds": 0.038798,
+          "budget_fallbacks": 0,
+          "wall_seconds": 12.029252
+        },
+        {
+          "seed": 115845,
+          "hands": 400,
+          "profit_chips": 611,
+          "bb_per_hand": 0.76375,
+          "match_points": 1.0,
+          "candidate_seconds": 10.285467,
+          "candidate_decisions": 949,
+          "max_decision_seconds": 0.05159,
+          "budget_fallbacks": 0,
+          "wall_seconds": 17.206041
+        }
+      ]
+    },
+    {
+      "opponent": "switching",
+      "matches": 6,
+      "hands": 2400,
+      "mean_bb_per_hand": 2.3335416666666666,
+      "approx_95pct_half_width": 0.39555648551895994,
+      "match_point_rate": 1.0,
+      "max_candidate_seconds": 9.92118,
+      "max_decision_seconds": 0.118604,
+      "budget_fallbacks": 0,
+      "runs": [
+        {
+          "seed": 110800,
+          "hands": 400,
+          "profit_chips": 2362,
+          "bb_per_hand": 2.9525,
+          "match_points": 1.0,
+          "candidate_seconds": 9.571579,
+          "candidate_decisions": 854,
+          "max_decision_seconds": 0.118604,
+          "budget_fallbacks": 0,
+          "wall_seconds": 9.715398
+        },
+        {
+          "seed": 111809,
+          "hands": 400,
+          "profit_chips": 2168,
+          "bb_per_hand": 2.71,
+          "match_points": 1.0,
+          "candidate_seconds": 9.132676,
+          "candidate_decisions": 862,
+          "max_decision_seconds": 0.040309,
+          "budget_fallbacks": 0,
+          "wall_seconds": 9.279937
+        },
+        {
+          "seed": 112818,
+          "hands": 400,
+          "profit_chips": 1695,
+          "bb_per_hand": 2.11875,
+          "match_points": 1.0,
+          "candidate_seconds": 9.836433,
+          "candidate_decisions": 858,
+          "max_decision_seconds": 0.031063,
+          "budget_fallbacks": 0,
+          "wall_seconds": 9.980225
+        },
+        {
+          "seed": 113827,
+          "hands": 400,
+          "profit_chips": 1316,
+          "bb_per_hand": 1.645,
+          "match_points": 1.0,
+          "candidate_seconds": 9.92118,
+          "candidate_decisions": 863,
+          "max_decision_seconds": 0.035873,
+          "budget_fallbacks": 0,
+          "wall_seconds": 10.070778
+        },
+        {
+          "seed": 114836,
+          "hands": 400,
+          "profit_chips": 1595,
+          "bb_per_hand": 1.99375,
+          "match_points": 1.0,
+          "candidate_seconds": 7.231724,
+          "candidate_decisions": 820,
+          "max_decision_seconds": 0.027961,
+          "budget_fallbacks": 0,
+          "wall_seconds": 7.3522
+        },
+        {
+          "seed": 115845,
+          "hands": 400,
+          "profit_chips": 2065,
+          "bb_per_hand": 2.58125,
+          "match_points": 1.0,
+          "candidate_seconds": 8.181842,
+          "candidate_decisions": 853,
+          "max_decision_seconds": 0.061033,
+          "budget_fallbacks": 0,
+          "wall_seconds": 8.308
+        }
+      ]
+    },
+    {
+      "opponent": "shove",
+      "matches": 6,
+      "hands": 2400,
+      "mean_bb_per_hand": 2.7841666666666667,
+      "approx_95pct_half_width": 0.7251400350583633,
+      "match_point_rate": 1.0,
+      "max_candidate_seconds": 6.69798,
+      "max_decision_seconds": 0.11661,
+      "budget_fallbacks": 0,
+      "runs": [
+        {
+          "seed": 110800,
+          "hands": 400,
+          "profit_chips": 3244,
+          "bb_per_hand": 4.055,
+          "match_points": 1.0,
+          "candidate_seconds": 5.742798,
+          "candidate_decisions": 639,
+          "max_decision_seconds": 0.028944,
+          "budget_fallbacks": 0,
+          "wall_seconds": 5.841978
+        },
+        {
+          "seed": 111809,
+          "hands": 400,
+          "profit_chips": 2990,
+          "bb_per_hand": 3.7375,
+          "match_points": 1.0,
+          "candidate_seconds": 5.383147,
+          "candidate_decisions": 673,
+          "max_decision_seconds": 0.056652,
+          "budget_fallbacks": 0,
+          "wall_seconds": 5.473448
+        },
+        {
+          "seed": 112818,
+          "hands": 400,
+          "profit_chips": 1689,
+          "bb_per_hand": 2.11125,
+          "match_points": 1.0,
+          "candidate_seconds": 6.647508,
+          "candidate_decisions": 691,
+          "max_decision_seconds": 0.029731,
+          "budget_fallbacks": 0,
+          "wall_seconds": 6.755874
+        },
+        {
+          "seed": 113827,
+          "hands": 400,
+          "profit_chips": 1679,
+          "bb_per_hand": 2.09875,
+          "match_points": 1.0,
+          "candidate_seconds": 5.602293,
+          "candidate_decisions": 691,
+          "max_decision_seconds": 0.057381,
+          "budget_fallbacks": 0,
+          "wall_seconds": 5.689934
+        },
+        {
+          "seed": 114836,
+          "hands": 400,
+          "profit_chips": 1579,
+          "bb_per_hand": 1.97375,
+          "match_points": 1.0,
+          "candidate_seconds": 5.744699,
+          "candidate_decisions": 645,
+          "max_decision_seconds": 0.065231,
+          "budget_fallbacks": 0,
+          "wall_seconds": 5.844862
+        },
+        {
+          "seed": 115845,
+          "hands": 400,
+          "profit_chips": 2183,
+          "bb_per_hand": 2.72875,
+          "match_points": 1.0,
+          "candidate_seconds": 6.69798,
+          "candidate_decisions": 674,
+          "max_decision_seconds": 0.11661,
+          "budget_fallbacks": 0,
+          "wall_seconds": 6.820834
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Local synthetic opponents; not tournament performance.",
+    "Timing excludes imports, process startup and protocol I/O.",
+    "Chip cap and organizer protocol are not yet specified.",
+    "Intervals are approximate and computed across matches."
+  ]
+}

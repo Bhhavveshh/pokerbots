@@ -1,0 +1,18 @@
+{
+  "five_card_hands": 2598960,
+  "category_counts": {
+    "high card": 1302540,
+    "pair": 1098240,
+    "two pair": 123552,
+    "three of a kind": 54912,
+    "straight": 10200,
+    "flush": 5108,
+    "full house": 3744,
+    "four of a kind": 624,
+    "straight flush": 40
+  },
+  "independent_seven_card_checks": 20000,
+  "seed": 11777,
+  "seconds": 54.12881910000033,
+  "passed": true
+}
